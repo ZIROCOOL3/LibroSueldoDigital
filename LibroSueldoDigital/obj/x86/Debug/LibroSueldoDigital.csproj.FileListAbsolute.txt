@@ -1,0 +1,33 @@
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\EntityFramework.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\EntityFramework.SqlServer.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\System.Data.SQLite.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\System.Data.SQLite.EF6.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\System.Data.SQLite.Linq.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.GridView.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.Themes.Office2019.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.UI.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\TelerikCommon.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\EntityFramework.xml
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\EntityFramework.SqlServer.xml
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\System.Data.SQLite.xml
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.xml
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.GridView.xml
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.UI.xml
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.csprojAssemblyReference.cache
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.FrmPrincipal.resources
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Properties.Resources.resources
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.csproj.GenerateResource.cache
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.csproj.CoreCompileInputs.cache
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.csproj.CopyComplete
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Libro Sueldo Digital.exe.config
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Libro Sueldo Digital.exe
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Libro Sueldo Digital.pdb
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\Libro Sueldo Digital.exe.licenses
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\Libro Sueldo Digital.exe
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\Libro Sueldo Digital.pdb
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Formularios.FrmErrores.resources
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\DocumentFormat.OpenXml.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\SpreadsheetLight.dll
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Formularios.FrmCrear.resources
+G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Formularios.FrmDatosEmpresa.resources
