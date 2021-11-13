@@ -45,19 +45,19 @@ namespace LibroSueldoDigital.Clases
         public string BaseCalculoOsFsr { get; set; }
         public string BaseCalculoLRT { get; set; }
         public string RenumeracionMatAnses { get; set; }
-        public string BaseImponible { get; set; }
-        public string BaseImponible2 { get; set; }
-        public string BaseImponible3 { get; set; }
-        public string BaseImponible4 { get; set; }
-        public string BaseImponible5 { get; set; }
-        public string BaseImponible6 { get; set; }
-        public string BaseImponible7 { get; set; }
-        public string BaseImponible8 { get; set; }
-        public string BaseImponible9 { get; set; }
-        public string BaseCalculoSegSocial { get; set; }
-        public string BaseCalculoContriSegSocial { get; set; }
-        public string BaseImponible10 { get; set; }
-        public string ImporteDetraer { get; set; }
+        //public string BaseImponible { get; set; }
+        //public string BaseImponible2 { get; set; }
+        //public string BaseImponible3 { get; set; }
+        //public string BaseImponible4 { get; set; }
+        //public string BaseImponible5 { get; set; }
+        //public string BaseImponible6 { get; set; }
+        //public string BaseImponible7 { get; set; }
+        //public string BaseImponible8 { get; set; }
+        //public string BaseImponible9 { get; set; }
+        //public string BaseCalculoSegSocial { get; set; }
+        //public string BaseCalculoContriSegSocial { get; set; }
+        //public string BaseImponible10 { get; set; }
+        //public string ImporteDetraer { get; set; }
 
     }
 }

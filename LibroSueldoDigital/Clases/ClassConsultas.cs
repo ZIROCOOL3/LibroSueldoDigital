@@ -20,6 +20,67 @@ namespace LibroSueldoDigital.Clases
             instCon.cerrarConexion();
             return dt2;
         }
+        public DataTable TraerDatosFijo(string cuit)
+        {
+            DataTable dt2 = new DataTable();
+            SQLiteDataAdapter ad1 = new SQLiteDataAdapter("select * from datosfijos where cuit ="+cuit, instCon.abrirConexion());
+            ad1.Fill(dt2);
+            instCon.cerrarConexion();
+            return dt2;
+        }
+        public string  TraerCuitEmpresa()
+        {
+            DataTable dt2 = new DataTable();
+            string cuit = string.Empty;
+            SQLiteDataAdapter ad1 = new SQLiteDataAdapter("SELECT * FROM  empresa", instCon.abrirConexion());
+            ad1.Fill(dt2);
+            instCon.cerrarConexion();
+            foreach (DataRow item in dt2.Rows)
+            {
+                cuit = item["cuit"].ToString();
+            }
+            return cuit;
+        }
+
+        public string TraerCodigoDeAfip(string CodigoEmpresa)
+        {
+            DataTable dt2 = new DataTable();
+            string CodigoAfip = string.Empty;
+            SQLiteDataAdapter ad1 = new SQLiteDataAdapter("select * from conceptos where CodigoDeConceptoEmpresa =" + CodigoEmpresa, instCon.abrirConexion());
+            ad1.Fill(dt2);
+            instCon.cerrarConexion();
+            foreach (DataRow item in dt2.Rows)
+            {
+                CodigoAfip = item["CodigoDeConcepto"].ToString();
+            }
+            return CodigoAfip;
+        }
+        public string TraerCreditoDebito(string CodigoEmpresa)
+        {
+            DataTable dt2 = new DataTable();
+            string DebitoCredito = string.Empty;
+            SQLiteDataAdapter ad1 = new SQLiteDataAdapter("select * from conceptos where CodigoDeConceptoEmpresa =" + CodigoEmpresa, instCon.abrirConexion());
+            ad1.Fill(dt2);
+            instCon.cerrarConexion();
+            foreach (DataRow item in dt2.Rows)
+            {
+                DebitoCredito = item["DebitoCredito"].ToString();
+            }
+            return DebitoCredito;
+        }
+        public int TraerNumeroUltimaLiquidacion()
+        {
+            DataTable dt2 = new DataTable();
+            int ultimaLiquidacion = 0;
+            SQLiteDataAdapter ad1 = new SQLiteDataAdapter("SELECT * FROM  liquidaciones order by id", instCon.abrirConexion());
+            ad1.Fill(dt2);
+            instCon.cerrarConexion();
+            foreach (DataRow item in dt2.Rows)
+            {
+                ultimaLiquidacion = int.Parse(item["id"].ToString());
+            }
+            return ultimaLiquidacion;
+        }
         public void InsertarDatosFijos(List<ClassDatosFijos> ListaDatosFijos)
         {
             //recorrer la lista
@@ -113,20 +174,7 @@ namespace LibroSueldoDigital.Clases
                     @BaseCalculoDiferencialAportesOSyFSR,
                     @BaseCalculoDiferencialOSyFSR,
                     @BaseCalculoDiferencialLRT,
-                    @RemuneracionMaternidadANSeS,
-                    @Baseimponible1,
-                    @Baseimponible2,
-                    @Baseimponible3,
-                    @Baseimponible4,
-                    @Baseimponible5,
-                    @Baseimponible6,
-                    @Baseimponible7,
-                    @Baseimponible8,
-                    @Baseimponible9,
-                    @BaseParaElCalculodiferencialdeAportedeSegSocial,
-                    @BaseParaElCalculodiferencialdeContribucionesdeSegSocial,
-                    @Baseimponible10,
-                    @ImporteaDetraer)", instCon.abrirConexion());
+                    @RemuneracionMaternidadANSeS)", instCon.abrirConexion());
 
                 nComando.Parameters.AddWithValue("@CUIT", ListaDatosFijos[i].Cuit);
                 nComando.Parameters.AddWithValue("@NombreEmpleado", ListaDatosFijos[i].Nombre);
@@ -165,19 +213,19 @@ namespace LibroSueldoDigital.Clases
                 nComando.Parameters.AddWithValue("@BaseCalculoDiferencialOSyFSR", ListaDatosFijos[i].BaseCalculoOsFsr);
                 nComando.Parameters.AddWithValue("@BaseCalculoDiferencialLRT", ListaDatosFijos[i].BaseCalculoLRT);
                 nComando.Parameters.AddWithValue("@RemuneracionMaternidadANSeS", ListaDatosFijos[i].RenumeracionMatAnses);
-                nComando.Parameters.AddWithValue("@Baseimponible1", ListaDatosFijos[i].BaseImponible);
-                nComando.Parameters.AddWithValue("@Baseimponible2", ListaDatosFijos[i].BaseImponible2);
-                nComando.Parameters.AddWithValue("@Baseimponible3", ListaDatosFijos[i].BaseImponible3);
-                nComando.Parameters.AddWithValue("@Baseimponible4", ListaDatosFijos[i].BaseImponible4);
-                nComando.Parameters.AddWithValue("@Baseimponible5", ListaDatosFijos[i].BaseImponible5);
-                nComando.Parameters.AddWithValue("@Baseimponible6", ListaDatosFijos[i].BaseImponible6);
-                nComando.Parameters.AddWithValue("@Baseimponible7", ListaDatosFijos[i].BaseImponible7);
-                nComando.Parameters.AddWithValue("@Baseimponible8", ListaDatosFijos[i].BaseImponible8);
-                nComando.Parameters.AddWithValue("@Baseimponible9", ListaDatosFijos[i].BaseImponible9);
-                nComando.Parameters.AddWithValue("@BaseParaElCalculodiferencialdeAportedeSegSocial", ListaDatosFijos[i].BaseCalculoSegSocial);
-                nComando.Parameters.AddWithValue("@BaseParaElCalculodiferencialdeContribucionesdeSegSocial", ListaDatosFijos[i].BaseCalculoContriSegSocial);
-                nComando.Parameters.AddWithValue("@Baseimponible10", ListaDatosFijos[i].BaseImponible10);
-                nComando.Parameters.AddWithValue("@ImporteaDetraer", ListaDatosFijos[i].ImporteDetraer);
+                //nComando.Parameters.AddWithValue("@Baseimponible1", ListaDatosFijos[i].BaseImponible);
+                //nComando.Parameters.AddWithValue("@Baseimponible2", ListaDatosFijos[i].BaseImponible2);
+                //nComando.Parameters.AddWithValue("@Baseimponible3", ListaDatosFijos[i].BaseImponible3);
+                //nComando.Parameters.AddWithValue("@Baseimponible4", ListaDatosFijos[i].BaseImponible4);
+                //nComando.Parameters.AddWithValue("@Baseimponible5", ListaDatosFijos[i].BaseImponible5);
+                //nComando.Parameters.AddWithValue("@Baseimponible6", ListaDatosFijos[i].BaseImponible6);
+                //nComando.Parameters.AddWithValue("@Baseimponible7", ListaDatosFijos[i].BaseImponible7);
+                //nComando.Parameters.AddWithValue("@Baseimponible8", ListaDatosFijos[i].BaseImponible8);
+                //nComando.Parameters.AddWithValue("@Baseimponible9", ListaDatosFijos[i].BaseImponible9);
+                //nComando.Parameters.AddWithValue("@BaseParaElCalculodiferencialdeAportedeSegSocial", ListaDatosFijos[i].BaseCalculoSegSocial);
+                //nComando.Parameters.AddWithValue("@BaseParaElCalculodiferencialdeContribucionesdeSegSocial", ListaDatosFijos[i].BaseCalculoContriSegSocial);
+                //nComando.Parameters.AddWithValue("@Baseimponible10", ListaDatosFijos[i].BaseImponible10);
+                //nComando.Parameters.AddWithValue("@ImporteaDetraer", ListaDatosFijos[i].ImporteDetraer);
                 nComando.ExecuteNonQuery();
             }
             instCon.cerrarConexion();
