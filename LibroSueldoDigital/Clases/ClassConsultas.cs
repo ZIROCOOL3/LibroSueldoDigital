@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ namespace LibroSueldoDigital.Clases
     {
         ClassConectar instCon = new ClassConectar();
         //List<ClassDatosFijos> ListaDatosFijos = new List<ClassDatosFijos>();
+
+        public string path { get; set; }
+        public string periodo { get; set; }
         public DataTable TraerDatosBase(string Tabla)
         {
             DataTable dt2 = new DataTable();
@@ -240,6 +244,15 @@ namespace LibroSueldoDigital.Clases
             nComando.ExecuteNonQuery();
             instCon.cerrarConexion();
 
+        }
+        public void VerificarExixtenciaArchivo(string Registro)
+        {
+            path = @"c:\LibroSueldoDigital\Liquidacion" + "-" + periodo + "-" + Registro + ".txt";
+            //verico si existe archivo de ser asi los borro
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
         }
     }
 }

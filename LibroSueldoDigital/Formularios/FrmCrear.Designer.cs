@@ -37,12 +37,12 @@
             this.PgbProceso = new Telerik.WinControls.UI.RadProgressBarElement();
             this.CmdProcesar = new Telerik.WinControls.UI.RadButton();
             this.CmbSeleccionarArchivo = new Telerik.WinControls.UI.RadButton();
-            this.OfdAbrirArchivo = new Telerik.WinControls.UI.RadOpenFileDialog();
             this.TxtNombreHoja = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.TxtPeriodo = new Telerik.WinControls.UI.RadTextBox();
             this.LblPeriodo = new Telerik.WinControls.UI.RadLabel();
+            this.OfdAbrirArchivo = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtRuta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
@@ -133,10 +133,6 @@
             this.CmbSeleccionarArchivo.ThemeName = "Office2019Light";
             this.CmbSeleccionarArchivo.Click += new System.EventHandler(this.CmbSeleccionarArchivo_Click);
             // 
-            // OfdAbrirArchivo
-            // 
-            this.OfdAbrirArchivo.Filter = "";
-            // 
             // TxtNombreHoja
             // 
             this.TxtNombreHoja.Location = new System.Drawing.Point(306, 36);
@@ -175,6 +171,10 @@
             this.LblPeriodo.Text = "Periodo";
             this.LblPeriodo.ThemeName = "Office2019Light";
             this.LblPeriodo.Visible = false;
+            // 
+            // OfdAbrirArchivo
+            // 
+            this.OfdAbrirArchivo.FileName = "openFileDialog1";
             // 
             // FrmCrear
             // 
@@ -227,11 +227,11 @@
         private Telerik.WinControls.UI.RadStatusStrip radStatusStrip1;
         private Telerik.WinControls.UI.RadLabelElement radLabelElement1;
         private Telerik.WinControls.UI.RadProgressBarElement PgbProceso;
-        private Telerik.WinControls.UI.RadOpenFileDialog OfdAbrirArchivo;
         private Telerik.WinControls.UI.RadTextBox TxtNombreHoja;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Telerik.WinControls.UI.RadTextBox TxtPeriodo;
         private Telerik.WinControls.UI.RadLabel LblPeriodo;
+        private System.Windows.Forms.OpenFileDialog OfdAbrirArchivo;
     }
 }

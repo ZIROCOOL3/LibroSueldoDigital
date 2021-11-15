@@ -1,0 +1,2 @@
+Código AFIP;Descripción;Código contribuyente;Descripción;Marca repetible;Aportes SIPA;Contribuciones SIPA;Aportes INSSJyP;Contribuciones INSSJyP;Aportes obra social;Contribuciones obra social;Aportes FSR;Contribuciones FSR;Aportes RENATEA;Contribuciones RENATEA;Contribuciones AAFF;Contribuciones FNE;Contribuciones LRT;Aportes diferenciales;Aportes especiales
+110000;Sueldo;22;Sueldo;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;

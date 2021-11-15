@@ -51,6 +51,7 @@
             this.radRibbonBarButtonGroup4 = new Telerik.WinControls.UI.RadRibbonBarButtonGroup();
             this.CmbDatosEmpresa = new Telerik.WinControls.UI.RadButtonElement();
             this.radRibbonFormBehavior1 = new Telerik.WinControls.UI.RadRibbonFormBehavior();
+            this.CmdExportarCOnceptos = new Telerik.WinControls.UI.RadButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.DtgDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtgDatos.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).BeginInit();
@@ -106,7 +107,8 @@
             // 
             this.radRibbonBarGroup1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarButtonGroup2,
-            this.CmbListarConceptos});
+            this.CmbListarConceptos,
+            this.CmdExportarCOnceptos});
             this.radRibbonBarGroup1.Name = "radRibbonBarGroup1";
             this.radRibbonBarGroup1.Text = "Conceptos";
             // 
@@ -247,6 +249,12 @@
             // 
             this.radRibbonFormBehavior1.Form = this;
             // 
+            // CmdExportarCOnceptos
+            // 
+            this.CmdExportarCOnceptos.Name = "CmdExportarCOnceptos";
+            this.CmdExportarCOnceptos.Text = "Exportar";
+            this.CmdExportarCOnceptos.Click += new System.EventHandler(this.CmdExportarCOnceptos_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,5 +305,6 @@
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup4;
         private Telerik.WinControls.UI.RadRibbonBarButtonGroup radRibbonBarButtonGroup4;
         private Telerik.WinControls.UI.RadButtonElement CmbDatosEmpresa;
+        private Telerik.WinControls.UI.RadButtonElement CmdExportarCOnceptos;
     }
 }

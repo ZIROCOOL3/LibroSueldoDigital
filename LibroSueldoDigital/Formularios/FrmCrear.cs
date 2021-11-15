@@ -56,7 +56,7 @@ namespace LibroSueldoDigital.Formularios
         string BaseCalculoContSegSoc = string.Empty;
         string ImporteDetraer = string.Empty;
         string Cantidad = string.Empty;
-        string path = string.Empty;
+        
 
         public object Maths { get; private set; }
 
@@ -545,14 +545,15 @@ namespace LibroSueldoDigital.Formularios
                         DiasBase = "  ";
                     }
                     TipoLiquidacion = sl.GetCellValueAsString(4, Columnas + 2).ToUpper();
-                    RenumeracionBruta = Rellena("0", QuitaComa(sl.GetCellValueAsString(5, Columnas + 2)), 5, true);
+                    RenumeracionBruta = Rellena("0", QuitaComa(sl.GetCellValueAsString(5, Columnas + 2)), 15, true);
                     CantDiasSacProporcional = Rellena("0", QuitaComa(sl.GetCellValueAsString(6, Columnas + 2)), 5, true);
                     CantDiasAdelantoVacaciones = Rellena("0", QuitaComa(sl.GetCellValueAsString(7, Columnas + 2)), 5, true);
                     CantDiasHorasExtra = Rellena("0", QuitaComa(sl.GetCellValueAsString(8, Columnas + 2)), 5, true);
                     CantDiasHorasExtra50 = Rellena("0", QuitaComa(sl.GetCellValueAsString(9, Columnas + 2)), 5, true);
                     CantDiasHorasExtra100 = Rellena("0", QuitaComa(sl.GetCellValueAsString(10, Columnas + 2)), 5, true);
                     CantDiasHorasExtra200 = Rellena("0", QuitaComa(sl.GetCellValueAsString(11, Columnas + 2)), 5, true);
-                    VerificarExixtenciaArchivo("Reg01");
+                    instConsultas.periodo = TxtPeriodo.Text;
+                    instConsultas.VerificarExixtenciaArchivo("Reg01");
                     if (TxtPeriodo.Text.Length != 6 | TxtPeriodo.Text == "")
                     {
                         ListaDeErrores.Add(new ClassError { Numero = 6, Descripcion = "Verifique el periodo", ArchivoError = "Periodo de Liquidacion" });
@@ -560,13 +561,19 @@ namespace LibroSueldoDigital.Formularios
                         break;
                     }
                     //Crear Archivo 01 
-                    using (StreamWriter sw = File.CreateText(path))//archivo compras
+                    using (StreamWriter sw = File.CreateText(instConsultas.path))//archivo compras
                     {
 
                         sw.WriteLine("01" + instConsultas.TraerCuitEmpresa() + IdentEnvio + TxtPeriodo.Text + TipoLiquidacion + Rellena("0", NumeroUltimaLiquidacion.ToString(), 5, true) + DiasBase + Rellena("0", Columnas.ToString(), 6, true));
                     }
+
+                    string strFile = File.ReadAllText(instConsultas.path);
+                    strFile = Regex.Replace(strFile, "\r", "");
+                    File.WriteAllText(instConsultas.path, strFile);
+
+
                     //Crear Archivo 02
-                    VerificarExixtenciaArchivo("Reg02");
+                    instConsultas.VerificarExixtenciaArchivo("Reg02");
                     DataTable DtDatosFIjos = new DataTable();
                     CuilEmpleado = "20215465676";
                     DtDatosFIjos = instConsultas.TraerDatosFijo(CuilEmpleado);
@@ -576,7 +583,7 @@ namespace LibroSueldoDigital.Formularios
                         error = true;
                         break;
                     }
-                    using (StreamWriter sw = File.CreateText(path))//
+                    using (StreamWriter sw = File.CreateText(instConsultas.path))//
                     {
                         foreach (DataRow item in DtDatosFIjos.Rows)
                         {
@@ -586,8 +593,8 @@ namespace LibroSueldoDigital.Formularios
                     }
 
                     //Crear Archivo 03
-                    VerificarExixtenciaArchivo("Reg03");
-                    using (StreamWriter sw3 = File.CreateText(path))//archivo compras
+                    instConsultas.VerificarExixtenciaArchivo("Reg03");
+                    using (StreamWriter sw3 = File.CreateText(instConsultas.path))//archivo compras
                     {
                         for (int i = 12; i < filas + 1; i++) //recooro el excel de liquidacion
                         {
@@ -632,11 +639,13 @@ namespace LibroSueldoDigital.Formularios
                                 }
 
                                 //pregunto si tiene valor el concepto
+                                //MessageBox.Show(sl.GetCellValueAsString(i, 2));
                                 if (sl.GetCellValueAsString(i, 1) != "" & sl.GetCellValueAsString(i, Columnas + 2) != "")
                                 {
+                                    //MessageBox.Show(sl.GetCellValueAsString(i, 1));
                                     if (Regex.IsMatch(sl.GetCellValueAsString(i, 1), @"^[0-9]+$"))
                                     {
-                                        string Dato = "03" + CuilEmpleado + Rellena(" ", sl.GetCellValueAsString(i, 1), 10, false) + Cantidad + " " + Rellena("0", Valor, 15, true) + instConsultas.TraerCreditoDebito(sl.GetCellValueAsString(i, 1)) + Rellena(" ", " ",5,true);
+                                        string Dato = "03" + CuilEmpleado + Rellena(" ", sl.GetCellValueAsString(i, 1), 10, false) + Cantidad + " " + Rellena("0", Valor, 15, true) + instConsultas.TraerCreditoDebito(sl.GetCellValueAsString(i, 1)) + "      ";
                                         //MessageBox.Show(Rellena("0", Valor, 15, true));
                                         sw3.WriteLine(Dato);
                                     }
@@ -699,13 +708,13 @@ namespace LibroSueldoDigital.Formularios
 
 
                     //crear archivo 04
-                    VerificarExixtenciaArchivo("Reg04");
+                    instConsultas.VerificarExixtenciaArchivo("Reg04");
                     //DataTable dtDatosFijos = new DataTable();
-                    using (StreamWriter sw = File.CreateText(path))//
+                    using (StreamWriter sw = File.CreateText(instConsultas.path))//
                     {
                         foreach (DataRow item in DtDatosFIjos.Rows)
                         {
-                            MessageBox.Show(item["MarcaCorrespondeReduccion"].ToString());
+                            //MessageBox.Show(item["MarcaCorrespondeReduccion"].ToString());
                             sw.WriteLine("04" + CuilEmpleado + item["Conyuge"].ToString() + item["CantidadDeHijos"].ToString() + item["MarcaCCT"].ToString() + item["MarcaSCVO"].ToString()+ item["MarcaCorrespondeReduccion"].ToString()+ item["TipoEmpresa"].ToString()+ "0"+ item["SituacionDeRevista1"].ToString()+ item["CodigoCondicion"].ToString()+ item["CodigoActividad"].ToString()+ item["CodigoModalidadContratacion"].ToString()+ item["CodigoSiniestrado"].ToString()+ item["CodigoDeLocalidad"].ToString()+ item["SituacionDeRevista1"].ToString()+ item["DiaInicioSituacionDeRevista1"].ToString()+ item["SituacionDeRevista2"].ToString()+ item["DiaInicioSituacionDeRevista2"].ToString()+ item["SituacionDeRevista3"].ToString()+ item["DiaInicioSituacionDeRevista3"].ToString() + item["CantDiasTrabajados"].ToString() + item["HorasTrabajadas"].ToString() + item["PorcentajeAporteAdicionalSS"].ToString() + item["ContribucionTareaDiferencial"].ToString() + item["CodigoObraSocial"].ToString() + item["Cantidadadherentes"].ToString() + item["AporteAdicionalOS"].ToString() + item["ContribucionAdicionalOS"].ToString() + item["BaseCalculoDiferencialAportesOSyFSR"].ToString() + item["BaseCalculoDiferencialOSyFSR"].ToString() + item["BaseCalculoDiferencialLRT"].ToString() + item["RemuneracionMaternidadANSeS"].ToString() +RenumeracionBruta + BaseImponible1 + BaseImponible2 + BaseImponible3 + BaseImponible4 + BaseImponible5 + BaseImponible6 + BaseImponible7 + BaseImponible8 + BaseImponible9 + BaseCalculoAporteSegSoc + BaseCalculoContSegSoc + BaseImponible10  + ImporteDetraer );
                         }
                     }
@@ -742,15 +751,7 @@ namespace LibroSueldoDigital.Formularios
 
             return Valor;
         }
-        public void VerificarExixtenciaArchivo(string Registro)
-        {
-            path = @"c:\LibroSueldoDigital\Liquidacion" + "-" + TxtPeriodo.Text + "-"+ Registro + ".txt";
-            //verico si existe archivo de ser asi los borro
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-        }
+       
         public string Rellena(string CaractRellenar, string Dato, int Longitud, bool RellenaIzquierda)
         {
 
