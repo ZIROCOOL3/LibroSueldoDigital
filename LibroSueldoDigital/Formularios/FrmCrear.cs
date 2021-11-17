@@ -29,6 +29,7 @@ namespace LibroSueldoDigital.Formularios
     
         List<ClassError> ListaDeErrores = new List<ClassError>();
         List<ClassDatosFijos> ListaDatosFijos = new List<ClassDatosFijos>();
+        List<ClassDatosFijos> ListaDatosFijosActualizar = new List<ClassDatosFijos>();
         ClassConsultas instConsultas = new ClassConsultas();
         int NumeroUltimaLiquidacion = 0;
         string DiasBase = string.Empty;
@@ -56,7 +57,7 @@ namespace LibroSueldoDigital.Formularios
         string BaseCalculoContSegSoc = string.Empty;
         string ImporteDetraer = string.Empty;
         string Cantidad = string.Empty;
-        
+        bool ExisteEmpleado = false;
 
         public object Maths { get; private set; }
 
@@ -74,7 +75,7 @@ namespace LibroSueldoDigital.Formularios
                         ListaDeErrores.Add(new ClassError { Numero = 5, Descripcion = "Verifique que el nombre de la hoja de excel sea correcta", ArchivoError = "Excel liquidaciones" });
                         error = true;
                     }
-                    for (int i = 6; i < filas + 1; i++)
+                    for (int i = 7; i < filas + 1; i++)
                     {
                         if (sl.GetCellValueAsString(i, 2) == "")//COMPRUEBO CUANDO LA ULTIMA FILA ES VACIA
                         {
@@ -85,11 +86,25 @@ namespace LibroSueldoDigital.Formularios
                         string Nombre= sl.GetCellValueAsString(i, 2);
 
                         //02 cuil tam=11 
-                        string Cuit = sl.GetCellValueAsString(i, 3).Replace("-","");
-                        if (Cuit.Length !=11)
+                        string CuilEmpleado = sl.GetCellValueAsString(i, 3).Replace("-","");
+                        if (CuilEmpleado.Length !=11)
                         {
                             ListaDeErrores.Add(new ClassError { Numero = 4, Descripcion = "Largo de Cuil Incorrecto("+ sl.GetCellValueAsString(i, 3)+")", ArchivoError = "Excel liquidaciones"});
                             error = true;
+                        }
+                        //verifico si existe empleado,de ser asi pregunto si se quiere actualizar
+
+                        // verifico si ya exite el empleado, de ser asi actualizo
+                        if (instConsultas.VerificoExistenciaEmpleado(CuilEmpleado))
+                        {
+                            //activo
+                            ExisteEmpleado = true;
+
+                        }
+                        else
+                        {
+                            //desactico
+                            ExisteEmpleado = false;
                         }
 
                         //03 dias base
@@ -294,205 +309,103 @@ namespace LibroSueldoDigital.Formularios
                         {
                             RenumeracionMatAnses = "000000000000000";
                         }
-
-                        ////38 Base Imponible
-                        //string BaseImponible = sl.GetCellValueAsString(i, 39);
-                        //if (BaseImponible != "0")
-                        //{
-                        //    BaseImponible = Rellena("0", QuitaComa(BaseImponible), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseImponible = "000000000000000";
-                        //}
                         
-                        ////39 Base Imponible 2
-                        //string BaseImponible2 = sl.GetCellValueAsString(i, 40);
-                        //if (BaseImponible2 != "0")
-                        //{
-                        //    BaseImponible2 = Rellena("0", QuitaComa(BaseImponible2), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseImponible2 = "000000000000000";
-                        //}
-
-                        ////40 Base Imponible 3
-                        //string BaseImponible3 = sl.GetCellValueAsString(i, 41);
-                        //if (BaseImponible3 != "0")
-                        //{
-                        //    BaseImponible3 = Rellena("0", QuitaComa(BaseImponible3), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseImponible3 = "000000000000000";
-                        //}
-
-                        ////41 Base Imponible 4
-                        //string BaseImponible4 = sl.GetCellValueAsString(i, 42);
-                        //if (BaseImponible4 != "0")
-                        //{
-                        //    BaseImponible4 = Rellena("0", QuitaComa(BaseImponible4), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseImponible4 = "000000000000000";
-                        //}
-
-                        ////42 Base Imponible 5
-                        //string BaseImponible5 = sl.GetCellValueAsString(i, 43);
-                        //if (BaseImponible5 != "0")
-                        //{
-                        //    BaseImponible5 = Rellena("0", QuitaComa(BaseImponible5), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseImponible5 = "000000000000000";
-                        //}
-
-                        ////43 Base Imponible 6
-                        //string BaseImponible6 = sl.GetCellValueAsString(i, 44);
-                        //if (BaseImponible6 != "0")
-                        //{
-                        //    BaseImponible6 = Rellena("0", QuitaComa(BaseImponible6), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseImponible6 = "000000000000000";
-                        //}
-
-                        ////44 Base Imponible 7
-                        //string BaseImponible7 = sl.GetCellValueAsString(i, 45);
-                        //if (BaseImponible7 != "0")
-                        //{
-                        //    BaseImponible7 = Rellena("0", QuitaComa(BaseImponible7), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseImponible7 = "000000000000000";
-                        //}
-
-                        ////45 Base Imponible 8
-                        //string BaseImponible8 = sl.GetCellValueAsString(i, 46);
-                        //if (BaseImponible8 != "0")
-                        //{
-                        //    BaseImponible8 = Rellena("0", QuitaComa(BaseImponible8), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseImponible8 = "000000000000000";
-                        //}
-
-                        ////46 Base Imponible 9
-                        //string BaseImponible9 = sl.GetCellValueAsString(i, 47);
-                        //if (BaseImponible9 != "0")
-                        //{
-                        //    BaseImponible9 = Rellena("0", QuitaComa(BaseImponible9), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseImponible9 = "000000000000000";
-                        //}
-
-                        ////47 Base para el cálculo diferencial de aporte de Seg. Social
-                        //string BaseCalculoSegSocial = sl.GetCellValueAsString(i, 48);
-                        //if (BaseCalculoSegSocial != "0")
-                        //{
-                        //    BaseCalculoSegSocial = Rellena("0", QuitaComa(BaseCalculoSegSocial), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseCalculoSegSocial = "000000000000000";
-                        //}
-
-                        ////48 Base para el cálculo diferencial de contribuciones de Seg. Social
-                        //string BaseCalculoContriSegSocial = sl.GetCellValueAsString(i, 49);
-                        //if (BaseCalculoContriSegSocial != "0")
-                        //{
-                        //    BaseCalculoContriSegSocial = Rellena("0", QuitaComa(BaseCalculoContriSegSocial), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseCalculoContriSegSocial = "000000000000000";
-                        //}
-                        ////49 Base Imponible 10
-                        //string BaseImponible10 = sl.GetCellValueAsString(i, 50);
-                        //if (BaseImponible10 != "0")
-                        //{
-                        //    BaseImponible10 = Rellena("0", QuitaComa(BaseImponible10), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    BaseImponible10 = "000000000000000";
-                        //}
-
-                        ////50 Importe a detraer
-                        //string ImporteDetraer = sl.GetCellValueAsString(i, 51);
-                        //if (ImporteDetraer != "0")
-                        //{
-                        //    ImporteDetraer = Rellena("0", QuitaComa(ImporteDetraer), 15, true);
-                        //}
-                        //else
-                        //{
-                        //    ImporteDetraer = "000000000000000";
-                        //}
                         if (ListaDeErrores.Count==0)
                         {
-                            ListaDatosFijos.Clear();
-
-                            ListaDatosFijos.Add(new ClassDatosFijos
+                            //ListaDatosFijos.Clear();
+                            if (ExisteEmpleado)
                             {
-                                Nombre = Nombre,
-                                Cuit = Cuit,
-                                DiasBase = DiasBase,
-                                Legajo = Legajo,
-                                DependenciaRevista = DependenciaRevista,
-                                Cbu = Cbu,
-                                DiasPropTope = DiasPropTope,
-                                FormaPago = FormaPago,
-                                conyugue = conyugue,
-                                Hijos = Hijos,
-                                MarcaCct = MarcaCct,
-                                MarcaScvo = MarcaScvo,
-                                MarcaReduccion = MarcaReduccion,
-                                TipoEmpresa = TipoEmpresa,
-                                CodigoCondicion = CodigoCondicion,
-                                CodigoActividad = CodigoActividad,
-                                CodigoContratacion = CodigoContratacion,
-                                CodigoSiniestrado = CodigoSiniestrado,
-                                CodigoLocalidad = CodigoLocalidad,
-                                SituacionRevista1 = SituacionRevista1,
-                                DiaInicioSituacion1 = DiaInicioSituacion1,
-                                SituacionRevista2 = SituacionRevista2,
-                                DiaInicioSituacion2 = DiaInicioSituacion2,
-                                SituacionRevista3 = SituacionRevista3,
-                                DiaInicioSituacion3 = DiaInicioSituacion3,
-                                DiasTrabajado = DiasTrabajado,
-                                HorasTrabajdo = HorasTrabajdo,
-                                PorAporteSS = PorAporteSS,
-                                PorTareaDiferencial = PorTareaDiferencial,
-                                CodigoObraSocial = CodigoObraSocial,
-                                CantidadAherente = CantidadAherente,
-                                AporteAdicOS = AporteAdicOS,
-                                ContAdicOS = ContAdicOS,
-                                BaseCalculoAporteOsFsr = BaseCalculoAporteOsFsr,
-                                BaseCalculoOsFsr = BaseCalculoOsFsr,
-                                BaseCalculoLRT = BaseCalculoLRT,
-                                RenumeracionMatAnses = RenumeracionMatAnses,
-                                //BaseImponible = BaseImponible,
-                                //BaseImponible2 = BaseImponible2,
-                                //BaseImponible3 = BaseImponible3,
-                                //BaseImponible4 = BaseImponible4,
-                                //BaseImponible5 = BaseImponible5,
-                                //BaseImponible6 = BaseImponible6,
-                                //BaseImponible7 = BaseImponible7,
-                                //BaseImponible8 = BaseImponible8,
-                                //BaseImponible9 = BaseImponible9,
-                                //BaseCalculoSegSocial = BaseCalculoSegSocial,
-                                //BaseCalculoContriSegSocial = BaseCalculoContriSegSocial,
-                                //BaseImponible10 = BaseImponible10,
-                                //ImporteDetraer = ImporteDetraer,
-                            });
+                                if (RadMessageBox.Show("El Empleado "+ Nombre + " con cuil"+ this.CuilEmpleado+" ya esxite,Desea Actulizar los datos?", "titulo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                                {
+                                    ListaDatosFijosActualizar.Add(new ClassDatosFijos
+                                    {
+                                        Nombre = Nombre,
+                                        Cuit = CuilEmpleado,
+                                        DiasBase = DiasBase,
+                                        Legajo = Legajo,
+                                        DependenciaRevista = DependenciaRevista,
+                                        Cbu = Cbu,
+                                        DiasPropTope = DiasPropTope,
+                                        FormaPago = FormaPago,
+                                        conyugue = conyugue,
+                                        Hijos = Hijos,
+                                        MarcaCct = MarcaCct,
+                                        MarcaScvo = MarcaScvo,
+                                        MarcaReduccion = MarcaReduccion,
+                                        TipoEmpresa = TipoEmpresa,
+                                        CodigoCondicion = CodigoCondicion,
+                                        CodigoActividad = CodigoActividad,
+                                        CodigoContratacion = CodigoContratacion,
+                                        CodigoSiniestrado = CodigoSiniestrado,
+                                        CodigoLocalidad = CodigoLocalidad,
+                                        SituacionRevista1 = SituacionRevista1,
+                                        DiaInicioSituacion1 = DiaInicioSituacion1,
+                                        SituacionRevista2 = SituacionRevista2,
+                                        DiaInicioSituacion2 = DiaInicioSituacion2,
+                                        SituacionRevista3 = SituacionRevista3,
+                                        DiaInicioSituacion3 = DiaInicioSituacion3,
+                                        DiasTrabajado = DiasTrabajado,
+                                        HorasTrabajdo = HorasTrabajdo,
+                                        PorAporteSS = PorAporteSS,
+                                        PorTareaDiferencial = PorTareaDiferencial,
+                                        CodigoObraSocial = CodigoObraSocial,
+                                        CantidadAherente = CantidadAherente,
+                                        AporteAdicOS = AporteAdicOS,
+                                        ContAdicOS = ContAdicOS,
+                                        BaseCalculoAporteOsFsr = BaseCalculoAporteOsFsr,
+                                        BaseCalculoOsFsr = BaseCalculoOsFsr,
+                                        BaseCalculoLRT = BaseCalculoLRT,
+                                        RenumeracionMatAnses = RenumeracionMatAnses,
+                                    });
+
+                                }
+
+                            }
+                            else
+                            {
+                                ListaDatosFijos.Add(new ClassDatosFijos
+                                {
+                                    Nombre = Nombre,
+                                    Cuit = CuilEmpleado,
+                                    DiasBase = DiasBase,
+                                    Legajo = Legajo,
+                                    DependenciaRevista = DependenciaRevista,
+                                    Cbu = Cbu,
+                                    DiasPropTope = DiasPropTope,
+                                    FormaPago = FormaPago,
+                                    conyugue = conyugue,
+                                    Hijos = Hijos,
+                                    MarcaCct = MarcaCct,
+                                    MarcaScvo = MarcaScvo,
+                                    MarcaReduccion = MarcaReduccion,
+                                    TipoEmpresa = TipoEmpresa,
+                                    CodigoCondicion = CodigoCondicion,
+                                    CodigoActividad = CodigoActividad,
+                                    CodigoContratacion = CodigoContratacion,
+                                    CodigoSiniestrado = CodigoSiniestrado,
+                                    CodigoLocalidad = CodigoLocalidad,
+                                    SituacionRevista1 = SituacionRevista1,
+                                    DiaInicioSituacion1 = DiaInicioSituacion1,
+                                    SituacionRevista2 = SituacionRevista2,
+                                    DiaInicioSituacion2 = DiaInicioSituacion2,
+                                    SituacionRevista3 = SituacionRevista3,
+                                    DiaInicioSituacion3 = DiaInicioSituacion3,
+                                    DiasTrabajado = DiasTrabajado,
+                                    HorasTrabajdo = HorasTrabajdo,
+                                    PorAporteSS = PorAporteSS,
+                                    PorTareaDiferencial = PorTareaDiferencial,
+                                    CodigoObraSocial = CodigoObraSocial,
+                                    CantidadAherente = CantidadAherente,
+                                    AporteAdicOS = AporteAdicOS,
+                                    ContAdicOS = ContAdicOS,
+                                    BaseCalculoAporteOsFsr = BaseCalculoAporteOsFsr,
+                                    BaseCalculoOsFsr = BaseCalculoOsFsr,
+                                    BaseCalculoLRT = BaseCalculoLRT,
+                                    RenumeracionMatAnses = RenumeracionMatAnses,
+                                });
+                            }
+
+                            
                         }
                         else
                         {
@@ -505,7 +418,19 @@ namespace LibroSueldoDigital.Formularios
                     }
 
                     //si no hay error cargo en base de datos
-                    instConsultas.InsertarDatosFijos(ListaDatosFijos);
+                    //verifico si ya la lista de datosFijos actulizar tiene datos
+                    if (ListaDatosFijosActualizar.Count !=0)
+                    {
+                        //actilizo
+                        instConsultas.ActualizoDatosFijos(ListaDatosFijosActualizar);
+
+                    }
+                    if (ListaDatosFijos.Count != 0)
+                    {
+                        //inserto
+                        instConsultas.InsertarDatosFijos(ListaDatosFijos);
+                    }
+                    
                     RadMessageBox.Show("Archivo Cargado");
                     this.Close();
                 }
@@ -567,9 +492,9 @@ namespace LibroSueldoDigital.Formularios
                         sw.WriteLine("01" + instConsultas.TraerCuitEmpresa() + IdentEnvio + TxtPeriodo.Text + TipoLiquidacion + Rellena("0", NumeroUltimaLiquidacion.ToString(), 5, true) + DiasBase + Rellena("0", Columnas.ToString(), 6, true));
                     }
 
-                    string strFile = File.ReadAllText(instConsultas.path);
-                    strFile = Regex.Replace(strFile, "\r", "");
-                    File.WriteAllText(instConsultas.path, strFile);
+                    //string strFile = File.ReadAllText(instConsultas.path);
+                    //strFile = Regex.Replace(strFile, "\n", "");
+                    //File.WriteAllText(instConsultas.path, strFile);
 
 
                     //Crear Archivo 02
@@ -587,7 +512,7 @@ namespace LibroSueldoDigital.Formularios
                     {
                         foreach (DataRow item in DtDatosFIjos.Rows)
                         {
-                            string dato = "02" + CuilEmpleado + item["legajo"].ToString() + item["DependenciaDeRevista"].ToString() + item["CBU"].ToString() + item["CantDeDiasParaProporcionarElTope"].ToString() + TxtPeriodo.Text + "10" + "        " + item["FormaDePago"].ToString();
+                            //string dato = "02" + CuilEmpleado + item["legajo"].ToString() + item["DependenciaDeRevista"].ToString() + item["CBU"].ToString() + item["CantDeDiasParaProporcionarElTope"].ToString() + TxtPeriodo.Text + "10" + "        " + item["FormaDePago"].ToString();
                             sw.WriteLine("02" + CuilEmpleado + item["legajo"].ToString() + item["DependenciaDeRevista"].ToString() + item["CBU"].ToString() + item["CantDeDiasParaProporcionarElTope"].ToString() + TxtPeriodo.Text + "10" + "        " + item["FormaDePago"].ToString());
                         }
                     }
@@ -714,8 +639,14 @@ namespace LibroSueldoDigital.Formularios
                     {
                         foreach (DataRow item in DtDatosFIjos.Rows)
                         {
-                            //MessageBox.Show(item["MarcaCorrespondeReduccion"].ToString());
-                            sw.WriteLine("04" + CuilEmpleado + item["Conyuge"].ToString() + item["CantidadDeHijos"].ToString() + item["MarcaCCT"].ToString() + item["MarcaSCVO"].ToString()+ item["MarcaCorrespondeReduccion"].ToString()+ item["TipoEmpresa"].ToString()+ "0"+ item["SituacionDeRevista1"].ToString()+ item["CodigoCondicion"].ToString()+ item["CodigoActividad"].ToString()+ item["CodigoModalidadContratacion"].ToString()+ item["CodigoSiniestrado"].ToString()+ item["CodigoDeLocalidad"].ToString()+ item["SituacionDeRevista1"].ToString()+ item["DiaInicioSituacionDeRevista1"].ToString()+ item["SituacionDeRevista2"].ToString()+ item["DiaInicioSituacionDeRevista2"].ToString()+ item["SituacionDeRevista3"].ToString()+ item["DiaInicioSituacionDeRevista3"].ToString() + item["CantDiasTrabajados"].ToString() + item["HorasTrabajadas"].ToString() + item["PorcentajeAporteAdicionalSS"].ToString() + item["ContribucionTareaDiferencial"].ToString() + item["CodigoObraSocial"].ToString() + item["Cantidadadherentes"].ToString() + item["AporteAdicionalOS"].ToString() + item["ContribucionAdicionalOS"].ToString() + item["BaseCalculoDiferencialAportesOSyFSR"].ToString() + item["BaseCalculoDiferencialOSyFSR"].ToString() + item["BaseCalculoDiferencialLRT"].ToString() + item["RemuneracionMaternidadANSeS"].ToString() +RenumeracionBruta + BaseImponible1 + BaseImponible2 + BaseImponible3 + BaseImponible4 + BaseImponible5 + BaseImponible6 + BaseImponible7 + BaseImponible8 + BaseImponible9 + BaseCalculoAporteSegSoc + BaseCalculoContSegSoc + BaseImponible10  + ImporteDetraer );
+                            sw.WriteLine("04" + CuilEmpleado + item["Conyuge"].ToString() + item["CantidadDeHijos"].ToString() + item["MarcaCCT"].ToString() + 
+                                item["MarcaSCVO"].ToString()+ item["MarcaCorrespondeReduccion"].ToString()+ item["TipoEmpresa"].ToString()+ "0"+ 
+                                item["SituacionDeRevista1"].ToString()+ item["CodigoCondicion"].ToString()+ item["CodigoActividad"].ToString()+
+                                item["CodigoModalidadContratacion"].ToString()+ item["CodigoSiniestrado"].ToString()+ item["CodigoDeLocalidad"].ToString()+ 
+                                item["SituacionDeRevista1"].ToString()+ item["DiaInicioSituacionDeRevista1"].ToString()+ item["SituacionDeRevista2"].ToString()+
+                                item["DiaInicioSituacionDeRevista2"].ToString()+ item["SituacionDeRevista3"].ToString()+ item["DiaInicioSituacionDeRevista3"].ToString() + 
+                                item["CantDiasTrabajados"].ToString() + item["HorasTrabajadas"].ToString() + item["PorcentajeAporteAdicionalSS"].ToString() +
+                                item["ContribucionTareaDiferencial"].ToString() + item["CodigoObraSocial"].ToString() + item["Cantidadadherentes"].ToString() + item["AporteAdicionalOS"].ToString() + item["ContribucionAdicionalOS"].ToString() + item["BaseCalculoDiferencialAportesOSyFSR"].ToString() + item["BaseCalculoDiferencialOSyFSR"].ToString() + item["BaseCalculoDiferencialLRT"].ToString() + item["RemuneracionMaternidadANSeS"].ToString() +RenumeracionBruta + BaseImponible1 + BaseImponible2 + BaseImponible3 + BaseImponible4 + BaseImponible5 + BaseImponible6 + BaseImponible7 + BaseImponible8 + BaseImponible9 + BaseCalculoAporteSegSoc + BaseCalculoContSegSoc + BaseImponible10  + ImporteDetraer );
                         }
                     }
                 }

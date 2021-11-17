@@ -1,0 +1,3 @@
+Cuil/Dato de referencia; Descripción
+;Podrian existir otros errores para esta liquidacion.
+20215465676;No corresponde informar codigo de concepto en este periodo 37
