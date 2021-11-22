@@ -6,22 +6,18 @@ using System.Threading.Tasks;
 
 namespace LibroSueldoDigital.Clases
 {
-    class ClassDatosFijos
+    class ClassReg4
     {
-        public string Nombre { get; set; }
-        public string Cuit { get; set; }
-        public string DiasBase { get; set; }
-        public string Legajo { get; set; }
-        public string DependenciaRevista { get; set; }
-        public string Cbu { get; set; }
-        public string DiasPropTope { get; set; }
-        public string FormaPago { get; set; }
+        public string IdRegistro { get; set; }
+        public string CuilEmpleado { get; set; }
         public string conyugue { get; set; }
         public string Hijos { get; set; }
         public string MarcaCct { get; set; }
         public string MarcaScvo { get; set; }
         public string MarcaReduccion { get; set; }
         public string TipoEmpresa { get; set; }
+        public string TipoOperacion { get; set; }
+        public string SituacionDeRevista { get; set; }
         public string CodigoCondicion { get; set; }
         public string CodigoActividad { get; set; }
         public string CodigoContratacion { get; set; }
@@ -45,6 +41,19 @@ namespace LibroSueldoDigital.Clases
         public string BaseCalculoOsFsr { get; set; }
         public string BaseCalculoLRT { get; set; }
         public string RenumeracionMatAnses { get; set; }
-       
+        public string RenumeracionBruta{ get; set; }
+        public string BaseImponible1 { get; set; }
+        public string BaseImponible2 { get; set; }
+        public string BaseImponible3 { get; set; }
+        public string BaseImponible4 { get; set; }
+        public string BaseImponible5 { get; set; }
+        public string BaseImponible6 { get; set; }
+        public string BaseImponible7 { get; set; }
+        public string BaseImponible8 { get; set; }
+        public string BaseImponible9 { get; set; }
+        public string BaseCalculoSegSocial { get; set; }
+        public string BaseCalculoContriSegSocial { get; set; }
+        public string BaseImponible10 { get; set; }
+        public string ImporteDetraer { get; set; }
     }
 }

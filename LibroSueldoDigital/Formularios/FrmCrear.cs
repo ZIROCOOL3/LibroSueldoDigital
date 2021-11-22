@@ -31,6 +31,12 @@ namespace LibroSueldoDigital.Formularios
         List<ClassDatosFijos> ListaDatosFijos = new List<ClassDatosFijos>();
         List<ClassDatosFijos> ListaDatosFijosActualizar = new List<ClassDatosFijos>();
         ClassConsultas instConsultas = new ClassConsultas();
+
+        List<ClassReg1> Reg01 = new List<ClassReg1>();
+        List<ClassReg2> Reg02 = new List<ClassReg2>();
+        List<ClassReg3> Reg03 = new List<ClassReg3>();
+        List<ClassReg4> Reg04 = new List<ClassReg4>();
+
         int NumeroUltimaLiquidacion = 0;
         string DiasBase = string.Empty;
         string CuilEmpleado = string.Empty;
@@ -457,50 +463,55 @@ namespace LibroSueldoDigital.Formularios
                 NumeroUltimaLiquidacion = instConsultas.TraerNumeroUltimaLiquidacion() + 1;
                 CrearCarpetaSalida();
 
-                for (int C = 0; C < Columnas; C++)// recorre una columna por empleado
+                Columnas = CantidadColumnas(RutaArchivoLiquidacion, TxtNombreHoja.Text);
+
+                //guardamos el reg01
+                if (TxtPeriodo.Text.Length != 6 | TxtPeriodo.Text == "")
                 {
-                    CuilEmpleado = sl.GetCellValueAsString(2, Columnas + 2);
-                    IdentEnvio = sl.GetCellValueAsString(3, Columnas + 2).ToUpper();
-                    if (IdentEnvio == "SJ")
-                    {
-                        DiasBase = "30";
-                    }
-                    else
-                    {
-                        DiasBase = "  ";
-                    }
-                    TipoLiquidacion = sl.GetCellValueAsString(4, Columnas + 2).ToUpper();
-                    RenumeracionBruta = Rellena("0", QuitaComa(sl.GetCellValueAsString(5, Columnas + 2)), 15, true);
-                    CantDiasSacProporcional = Rellena("0", QuitaComa(sl.GetCellValueAsString(6, Columnas + 2)), 5, true);
-                    CantDiasAdelantoVacaciones = Rellena("0", QuitaComa(sl.GetCellValueAsString(7, Columnas + 2)), 5, true);
-                    CantDiasHorasExtra = Rellena("0", QuitaComa(sl.GetCellValueAsString(8, Columnas + 2)), 5, true);
-                    CantDiasHorasExtra50 = Rellena("0", QuitaComa(sl.GetCellValueAsString(9, Columnas + 2)), 5, true);
-                    CantDiasHorasExtra100 = Rellena("0", QuitaComa(sl.GetCellValueAsString(10, Columnas + 2)), 5, true);
-                    CantDiasHorasExtra200 = Rellena("0", QuitaComa(sl.GetCellValueAsString(11, Columnas + 2)), 5, true);
+                    ListaDeErrores.Add(new ClassError { Numero = 6, Descripcion = "Verifique el periodo", ArchivoError = "Periodo de Liquidacion" });
+                    error = true;
+                    goto error;
+                }
+                Reg01.Clear();
+                IdentEnvio = CmbIdentificacionEnvio.Text;
+                TipoLiquidacion = CmbTipoLiquidacion.Text;
+                if (IdentEnvio == "SJ")
+                {
+                    DiasBase = "30";
+                }
+                else
+                {
+                    DiasBase = "  ";
+                }
+                Reg01.Add(new ClassReg1
+                {
+                    IdRegistro = "01",
+                    Cuit = instConsultas.TraerCuitEmpresa(),
+                    IdentEnvio = IdentEnvio,
+                    Periodo = TxtPeriodo.Text,
+                    TipoLiquidacion = TipoLiquidacion,
+                    NumeroLiquidacion = Rellena("0", NumeroUltimaLiquidacion.ToString(), 5, true),
+                    DiasBase = DiasBase,
+                    CantRegistros = Rellena("0", Columnas.ToString(), 6, true),
+                   
+                });
+                Reg02.Clear();
+                Reg03.Clear();
+                Reg04.Clear();
+
+                for (int C = 3; C < Columnas+3; C++)// recorre una columna por empleado
+                {
+                    CuilEmpleado = sl.GetCellValueAsString(2, C);
+                    RenumeracionBruta = Rellena("0", QuitaComa(sl.GetCellValueAsString(3, C)), 15, true);
+                    CantDiasSacProporcional = Rellena("0", QuitaComa(sl.GetCellValueAsString(4, C )), 5, true);
+                    CantDiasAdelantoVacaciones = Rellena("0", QuitaComa(sl.GetCellValueAsString(5, C)), 5, true);
+                    CantDiasHorasExtra = Rellena("0", QuitaComa(sl.GetCellValueAsString(6, C)), 5, true);
+                    CantDiasHorasExtra50 = Rellena("0", QuitaComa(sl.GetCellValueAsString(7, C)), 5, true);
+                    CantDiasHorasExtra100 = Rellena("0", QuitaComa(sl.GetCellValueAsString(8, C)), 5, true);
+                    CantDiasHorasExtra200 = Rellena("0", QuitaComa(sl.GetCellValueAsString(9, C)), 5, true);
                     instConsultas.periodo = TxtPeriodo.Text;
-                    instConsultas.VerificarExixtenciaArchivo("Reg01");
-                    if (TxtPeriodo.Text.Length != 6 | TxtPeriodo.Text == "")
-                    {
-                        ListaDeErrores.Add(new ClassError { Numero = 6, Descripcion = "Verifique el periodo", ArchivoError = "Periodo de Liquidacion" });
-                        error = true;
-                        break;
-                    }
-                    //Crear Archivo 01 
-                    using (StreamWriter sw = File.CreateText(instConsultas.path))//archivo compras
-                    {
 
-                        sw.WriteLine("01" + instConsultas.TraerCuitEmpresa() + IdentEnvio + TxtPeriodo.Text + TipoLiquidacion + Rellena("0", NumeroUltimaLiquidacion.ToString(), 5, true) + DiasBase + Rellena("0", Columnas.ToString(), 6, true));
-                    }
-
-                    //string strFile = File.ReadAllText(instConsultas.path);
-                    //strFile = Regex.Replace(strFile, "\n", "");
-                    //File.WriteAllText(instConsultas.path, strFile);
-
-
-                    //Crear Archivo 02
-                    instConsultas.VerificarExixtenciaArchivo("Reg02");
                     DataTable DtDatosFIjos = new DataTable();
-                    CuilEmpleado = "20215465676";
                     DtDatosFIjos = instConsultas.TraerDatosFijo(CuilEmpleado);
                     if (DtDatosFIjos.Rows.Count == 0)
                     {
@@ -508,154 +519,245 @@ namespace LibroSueldoDigital.Formularios
                         error = true;
                         break;
                     }
-                    using (StreamWriter sw = File.CreateText(instConsultas.path))//
+                    foreach (DataRow item in DtDatosFIjos.Rows)
                     {
-                        foreach (DataRow item in DtDatosFIjos.Rows)
+                        Reg02.Add(new ClassReg2
                         {
-                            //string dato = "02" + CuilEmpleado + item["legajo"].ToString() + item["DependenciaDeRevista"].ToString() + item["CBU"].ToString() + item["CantDeDiasParaProporcionarElTope"].ToString() + TxtPeriodo.Text + "10" + "        " + item["FormaDePago"].ToString();
-                            sw.WriteLine("02" + CuilEmpleado + item["legajo"].ToString() + item["DependenciaDeRevista"].ToString() + item["CBU"].ToString() + item["CantDeDiasParaProporcionarElTope"].ToString() + TxtPeriodo.Text + "10" + "        " + item["FormaDePago"].ToString());
-                        }
+                            IdRegistro = "02",
+                            CuilEmpleado = CuilEmpleado,
+                            DiasBase = DiasBase,
+                            Legajo = item["legajo"].ToString(),
+                            DependenciaDeRevista = item["DependenciaDeRevista"].ToString(),
+                            Cbu = item["CBU"].ToString(),
+                            DiasPropTope = item["CantDeDiasParaProporcionarElTope"].ToString(),
+                            FechaPago = TxtPeriodo.Text + "10",
+                            FechaRubrica= "        ",
+                            FormaPago = item["FormaDePago"].ToString(),
+                        });
                     }
 
-                    //Crear Archivo 03
-                    instConsultas.VerificarExixtenciaArchivo("Reg03");
-                    using (StreamWriter sw3 = File.CreateText(instConsultas.path))//archivo compras
+                    for (int i = 10; i < filas + 1; i++) //recooro el excel de liquidacion
                     {
-                        for (int i = 12; i < filas + 1; i++) //recooro el excel de liquidacion
+                        string Valor = string.Empty;
+                        if (sl.GetCellValueAsString(i, 1) == "")//COMPRUEBO CUANDO LA ULTIMA FILA ES VACIA
                         {
-                            if (sl.GetCellValueAsString(i, 1) == "")//COMPRUEBO CUANDO LA ULTIMA FILA ES VACIA
-                            {
-                                break;
-                            }
-                            //MessageBox.Show(sl.GetCellValueAsString(i, 1));
-                            foreach (DataRow item in DtDatosFIjos.Rows)
-                            {
-                                string Valor = ValorAbsoluto(sl.GetCellValueAsString(i, Columnas + 2));//valor absoluto del importe
-                                if (Regex.IsMatch(sl.GetCellValueAsString(i, 1), @"^[0-9]+$"))//busco solo si es numerico
-                                {
-                                    if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "120003")//sac proporcional
-                                    {
-                                        Cantidad = Rellena("0", CantDiasSacProporcional, 5, true);
-                                    }
-                                    else if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "150000")//adelanto vacacional
-                                    {
-                                        Cantidad = Rellena("0", CantDiasAdelantoVacaciones, 5, true);
-                                    }
-                                    else if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "130000")//horas extras
-                                    {
-                                        Cantidad = Rellena("0", CantDiasHorasExtra, 5, true);
-                                    }
-                                    else if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "130001")//horas extras al 50%
-                                    {
-                                        Cantidad = Rellena("0", CantDiasHorasExtra50, 5, true);
-                                    }
-                                    else if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "130002")//horas extras al 100%
-                                    {
-                                        Cantidad = Rellena("0", CantDiasHorasExtra100, 5, true);
-                                    }
-                                    else if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "130003")//horas extras al 200%
-                                    {
-                                        Cantidad = Rellena("0", CantDiasHorasExtra200, 5, true);
-                                    }
-                                    else
-                                    {
-                                        Cantidad = "00000";
-                                    }
-                                }
+                            break;
+                        }
+                        //MessageBox.Show(sl.GetCellValueAsString(i, C));
+                        try
+                        {
+                            Valor = ValorAbsoluto(sl.GetCellValueAsString(i, C));//valor absoluto del importe
+                        }
+                        catch (Exception)
+                        {
 
-                                //pregunto si tiene valor el concepto
-                                //MessageBox.Show(sl.GetCellValueAsString(i, 2));
-                                if (sl.GetCellValueAsString(i, 1) != "" & sl.GetCellValueAsString(i, Columnas + 2) != "")
+                            string EE = "";
+                        }
+                        
+                        if (Regex.IsMatch(sl.GetCellValueAsString(i, 1), @"^[0-9]+$"))//busco solo si es numerico
+                        {
+                            if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "120003")//sac proporcional
+                            {
+                                Cantidad = Rellena("0", CantDiasSacProporcional, 5, true);
+                            }
+                            else if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "150000")//adelanto vacacional
+                            {
+                                Cantidad = Rellena("0", CantDiasAdelantoVacaciones, 5, true);
+                            }
+                            else if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "130000")//horas extras
+                            {
+                                Cantidad = Rellena("0", CantDiasHorasExtra, 5, true);
+                            }
+                            else if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "130001")//horas extras al 50%
+                            {
+                                Cantidad = Rellena("0", CantDiasHorasExtra50, 5, true);
+                            }
+                            else if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "130002")//horas extras al 100%
+                            {
+                                Cantidad = Rellena("0", CantDiasHorasExtra100, 5, true);
+                            }
+                            else if (instConsultas.TraerCodigoDeAfip(sl.GetCellValueAsString(i, 1)) == "130003")//horas extras al 200%
+                            {
+                                Cantidad = Rellena("0", CantDiasHorasExtra200, 5, true);
+                            }
+                            else
+                            {
+                                Cantidad = "00000";
+                            }
+                        }
+
+                        //pregunto si tiene valor el concepto
+                        //MessageBox.Show(sl.GetCellValueAsString(i, C));
+                        //string f = sl.GetCellValueAsString(i, C);
+                        if (sl.GetCellValueAsString(i, 1) != "" & sl.GetCellValueAsString(i, C ).Length !=0 )
+                        {
+                            if (Regex.IsMatch(sl.GetCellValueAsString(i, 1), @"^[0-9]+$"))
+                            {
+                                Reg03.Add(new ClassReg3
                                 {
-                                    //MessageBox.Show(sl.GetCellValueAsString(i, 1));
-                                    if (Regex.IsMatch(sl.GetCellValueAsString(i, 1), @"^[0-9]+$"))
-                                    {
-                                        string Dato = "03" + CuilEmpleado + Rellena(" ", sl.GetCellValueAsString(i, 1), 10, false) + Cantidad + " " + Rellena("0", Valor, 15, true) + instConsultas.TraerCreditoDebito(sl.GetCellValueAsString(i, 1)) + "      ";
-                                        //MessageBox.Show(Rellena("0", Valor, 15, true));
-                                        sw3.WriteLine(Dato);
-                                    }
-                                    else
-                                    {
-                                        switch (sl.GetCellValueAsString(i, 1))
+                                    IdRegistro = "03",
+                                    CuilEmpleado = CuilEmpleado,
+                                    CodigoConcepto = Rellena(" ", sl.GetCellValueAsString(i, 1), 10, false),
+                                    Cantidad = Cantidad,
+                                    Unidades = " ",
+                                    Importe = Rellena("0", Valor, 15, true),
+                                    CreditoDebito = instConsultas.TraerCreditoDebito(sl.GetCellValueAsString(i, 1)),
+                                    PeriodoAjuste = "      ",
+
+                                });
+                            }
+                            else
+                            {
+                                int ddd =C;
+                                switch (sl.GetCellValueAsString(i, 1))
+                                {
+                                    case "B1":
+                                        BaseImponible1 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C )), 15, true);
+                                        break;
+                                    case "B2":
+                                        BaseImponible2 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C )), 15, true);
+                                        break;
+                                    case "B3":
+                                        BaseImponible3 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C )), 15, true);
+                                        break;
+                                    case "B4":
+                                        BaseImponible4 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C)), 15, true);
+                                        break;
+                                    case "B5":
+                                        BaseImponible5 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C)), 15, true);
+                                        break;
+                                    case "B6":
+                                        BaseImponible6 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C)), 15, true);
+                                        break;
+                                    case "B7":
+                                        BaseImponible7 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C)), 15, true);
+                                        break;
+                                    case "B8":
+                                        BaseImponible8 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C)), 15, true);
+                                        break;
+                                    case "B9":
+                                        BaseImponible9 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C)), 15, true);
+                                        break;
+                                    case "B10":
+                                        BaseImponible10 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C)), 15, true);
+                                        break;
+                                    case "BCASS":
+                                        BaseCalculoAporteSegSoc = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C)), 15, true);
+                                        break;
+                                    case "BCCSS":
+                                        BaseCalculoContSegSoc = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C)), 15, true);
+                                        break;
+                                    case "ID":
+                                        ImporteDetraer = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, C)), 15, true);
+                                        //guardo archivo04
+                                        foreach (DataRow item in DtDatosFIjos.Rows)
                                         {
-                                            case "B1":
-                                                BaseImponible1 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "B2":
-                                                BaseImponible2 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "B3":
-                                                BaseImponible3 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "B4":
-                                                BaseImponible4 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "B5":
-                                                BaseImponible5 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "B6":
-                                                BaseImponible6 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "B7":
-                                                BaseImponible7 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "B8":
-                                                BaseImponible8 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "B9":
-                                                BaseImponible9 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "B10":
-                                                BaseImponible10 = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "BCASS":
-                                                BaseCalculoAporteSegSoc = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "BCCSS":
-                                                BaseCalculoContSegSoc = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            case "ID":
-                                                ImporteDetraer = Rellena("0", QuitaComa(sl.GetCellValueAsString(i, Columnas + 2)), 15, true);
-                                                break;
-                                            default:
-                                                break;
+                                            Reg04.Add(new ClassReg4
+                                            {
+                                                IdRegistro = "04",
+                                                CuilEmpleado = CuilEmpleado,
+                                                conyugue = item["Conyuge"].ToString(),
+                                                Hijos = item["CantidadDeHijos"].ToString() ,
+                                                MarcaCct = item["MarcaCCT"].ToString(),
+                                                MarcaScvo = item["MarcaSCVO"].ToString(),
+                                                MarcaReduccion = item["MarcaCorrespondeReduccion"].ToString(),
+                                                TipoEmpresa = item["TipoEmpresa"].ToString(),
+                                                TipoOperacion = "0",
+                                                SituacionDeRevista = item["SituacionDeRevista1"].ToString(),
+                                                CodigoCondicion = item["CodigoCondicion"].ToString(),
+                                                CodigoActividad = item["CodigoActividad"].ToString(),
+                                                CodigoContratacion = item["CodigoModalidadContratacion"].ToString() ,
+                                                CodigoSiniestrado = item["CodigoSiniestrado"].ToString(),
+                                                CodigoLocalidad = item["CodigoDeLocalidad"].ToString(),
+                                                SituacionRevista1 = item["SituacionDeRevista1"].ToString(),
+                                                DiaInicioSituacion1 = item["DiaInicioSituacionDeRevista1"].ToString(),
+                                                SituacionRevista2 = item["SituacionDeRevista2"].ToString(),
+                                                DiaInicioSituacion2 = item["DiaInicioSituacionDeRevista2"].ToString(),
+                                                SituacionRevista3 = item["SituacionDeRevista3"].ToString(),
+                                                DiaInicioSituacion3 = item["DiaInicioSituacionDeRevista3"].ToString(),
+                                                DiasTrabajado = item["CantDiasTrabajados"].ToString() ,
+                                                HorasTrabajdo = item["HorasTrabajadas"].ToString() ,
+                                                PorAporteSS = item["PorcentajeAporteAdicionalSS"].ToString(),
+                                                PorTareaDiferencial = item["ContribucionTareaDiferencial"].ToString(),
+                                                CodigoObraSocial = item["CodigoObraSocial"].ToString() ,
+                                                CantidadAherente = item["Cantidadadherentes"].ToString(),
+                                                AporteAdicOS = item["AporteAdicionalOS"].ToString(),
+                                                ContAdicOS = item["ContribucionAdicionalOS"].ToString(),
+                                                BaseCalculoAporteOsFsr = item["BaseCalculoDiferencialAportesOSyFSR"].ToString(),
+
+                                                BaseCalculoOsFsr = item["BaseCalculoDiferencialOSyFSR"].ToString(),
+                                                //BaseCalculoOsFsr = Rellena("0", Valor, 15, true),
+                                                BaseCalculoLRT = item["BaseCalculoDiferencialLRT"].ToString(),
+                                                RenumeracionMatAnses = item["RemuneracionMaternidadANSeS"].ToString(),
+                                                RenumeracionBruta = RenumeracionBruta,
+                                                BaseImponible1 = BaseImponible1,
+                                                BaseImponible2 = BaseImponible2,
+                                                BaseImponible3 = BaseImponible3,
+                                                BaseImponible4 = BaseImponible4,
+                                                BaseImponible5 = BaseImponible5,
+                                                BaseImponible6 = BaseImponible6,
+                                                BaseImponible7 = BaseImponible7,
+                                                BaseImponible8 = BaseImponible8,
+                                                BaseImponible9 = BaseImponible9,
+                                                BaseCalculoSegSocial = BaseCalculoAporteSegSoc,
+                                                BaseCalculoContriSegSocial = BaseCalculoContSegSoc,
+                                                BaseImponible10 = BaseImponible10,
+                                                ImporteDetraer = ImporteDetraer,
+                                                });
+   
                                         }
-                                    }
-
+                                        break;
+                                    default:
+                                        break;
                                 }
-
-
                             }
-
                         }
                     }
 
-
-
-                    //crear archivo 04
-                    instConsultas.VerificarExixtenciaArchivo("Reg04");
-                    //DataTable dtDatosFijos = new DataTable();
-                    using (StreamWriter sw = File.CreateText(instConsultas.path))//
-                    {
-                        foreach (DataRow item in DtDatosFIjos.Rows)
-                        {
-                            sw.WriteLine("04" + CuilEmpleado + item["Conyuge"].ToString() + item["CantidadDeHijos"].ToString() + item["MarcaCCT"].ToString() + 
-                                item["MarcaSCVO"].ToString()+ item["MarcaCorrespondeReduccion"].ToString()+ item["TipoEmpresa"].ToString()+ "0"+ 
-                                item["SituacionDeRevista1"].ToString()+ item["CodigoCondicion"].ToString()+ item["CodigoActividad"].ToString()+
-                                item["CodigoModalidadContratacion"].ToString()+ item["CodigoSiniestrado"].ToString()+ item["CodigoDeLocalidad"].ToString()+ 
-                                item["SituacionDeRevista1"].ToString()+ item["DiaInicioSituacionDeRevista1"].ToString()+ item["SituacionDeRevista2"].ToString()+
-                                item["DiaInicioSituacionDeRevista2"].ToString()+ item["SituacionDeRevista3"].ToString()+ item["DiaInicioSituacionDeRevista3"].ToString() + 
-                                item["CantDiasTrabajados"].ToString() + item["HorasTrabajadas"].ToString() + item["PorcentajeAporteAdicionalSS"].ToString() +
-                                item["ContribucionTareaDiferencial"].ToString() + item["CodigoObraSocial"].ToString() + item["Cantidadadherentes"].ToString() + item["AporteAdicionalOS"].ToString() + item["ContribucionAdicionalOS"].ToString() + item["BaseCalculoDiferencialAportesOSyFSR"].ToString() + item["BaseCalculoDiferencialOSyFSR"].ToString() + item["BaseCalculoDiferencialLRT"].ToString() + item["RemuneracionMaternidadANSeS"].ToString() +RenumeracionBruta + BaseImponible1 + BaseImponible2 + BaseImponible3 + BaseImponible4 + BaseImponible5 + BaseImponible6 + BaseImponible7 + BaseImponible8 + BaseImponible9 + BaseCalculoAporteSegSoc + BaseCalculoContSegSoc + BaseImponible10  + ImporteDetraer );
-                        }
-                    }
                 }
 
             }
-
+error:
             if (ListaDeErrores.Count == 0)
             {
                 //proceso archivo
+                instConsultas.VerificarExixtenciaArchivo("RegGral");
+               
+                using (StreamWriter sw = File.CreateText(instConsultas.path))
+                {
+                    ///escribo valor registro 01
+                    foreach (var item in Reg01)
+                    {
+                        sw.WriteLine(item.IdRegistro + item.Cuit + item.IdentEnvio + item.Periodo + item.TipoLiquidacion + item.NumeroLiquidacion + item.DiasBase + item.CantRegistros);
+                    }
+
+                    ///escribo valor registro 02
+                    foreach (var item in Reg02)
+                    {
+                        sw.WriteLine(item.IdRegistro + item.CuilEmpleado +  item.Legajo + item.DependenciaDeRevista + 
+                            item.Cbu + item.DiasPropTope + item.FechaPago + item.FechaRubrica + item.FormaPago);
+                    }
+
+                    ///escribo valor registro 03
+                    foreach (var item in Reg03)
+                    {
+                        sw.WriteLine(item.IdRegistro + item.CuilEmpleado + item.CodigoConcepto + item.Cantidad + item.Unidades +
+                            item.Importe + item.CreditoDebito + item.PeriodoAjuste);
+                    }
+                    ///escribo valor registro 04
+                    foreach (var item in Reg04)
+                    {
+                        sw.WriteLine(item.IdRegistro + item.CuilEmpleado + item.conyugue + item.Hijos + item.MarcaCct +
+                            item.MarcaScvo + item.MarcaReduccion + item.TipoEmpresa + item.TipoOperacion + item.SituacionDeRevista + item.CodigoCondicion +
+                            item.CodigoActividad + item.CodigoContratacion + item.CodigoSiniestrado + item.CodigoLocalidad + item.SituacionRevista1 + item.DiaInicioSituacion1 +
+                            item.SituacionRevista2 + item.DiaInicioSituacion2 + item.SituacionRevista3 + item.DiaInicioSituacion3 + item.DiasTrabajado + item.HorasTrabajdo+
+                            item.PorAporteSS + item.PorTareaDiferencial + item.CodigoObraSocial + item.CantidadAherente + item.AporteAdicOS + item.ContAdicOS +
+                            item.BaseCalculoAporteOsFsr + item.BaseCalculoOsFsr + item.BaseCalculoLRT + item.RenumeracionMatAnses + item.RenumeracionBruta + item.BaseImponible1 +
+                            item.BaseImponible2 + item.BaseImponible3 + item.BaseImponible4 + item.BaseImponible5 + item.BaseImponible6 + item.BaseImponible7 +
+                            item.BaseImponible8 + item.BaseImponible9 + item.BaseCalculoSegSocial + item.BaseCalculoContriSegSocial + item.BaseImponible10 + item.ImporteDetraer);
+                    }
+
+                }
                 RadMessageBox.Show("Listo");
 
             }
@@ -739,9 +841,24 @@ namespace LibroSueldoDigital.Formularios
             }
             else if (CrearLibro)
             {
+                CmbIdentificacionEnvio.Items.Add("SJ");
+                CmbIdentificacionEnvio.Items.Add("RE");
+                CmbIdentificacionEnvio.SelectedIndex = 0;
+
+                CmbTipoLiquidacion.Items.Add("M");
+                CmbTipoLiquidacion.Items.Add("Q");
+                CmbTipoLiquidacion.Items.Add("D");
+                CmbTipoLiquidacion.Items.Add("H");
+                CmbTipoLiquidacion.Items.Add(" ");
+                CmbTipoLiquidacion.SelectedIndex = 0;
+
                 this.Text = "Crear Libro";
                 TxtPeriodo.Visible = true;
                 LblPeriodo.Visible = true;
+                LblIdentificacionEnvio.Visible = true;
+                LblTipoLiquidacion.Visible = true;
+                CmbTipoLiquidacion.Visible = true;
+                CmbIdentificacionEnvio.Visible = true;
 
             }
         }
@@ -772,6 +889,23 @@ namespace LibroSueldoDigital.Formularios
             }
    
      
+        }
+        public int CantidadColumnas(string ruta, string nombreHoja)
+        {
+            int ColumnasTotales = 0;
+            SLDocument s2 = new SLDocument(ruta, nombreHoja);
+            SLWorksheetStatistics stats = s2.GetWorksheetStatistics();
+            int filas = stats.EndRowIndex;
+            int Columnas = stats.EndColumnIndex ;
+            for (int C = 3; C < Columnas; C++)
+            {
+                //MessageBox.Show(s2.GetCellValueAsString(1, C));
+                if (s2.GetCellValueAsString(1, C)!="")
+                {
+                    ColumnasTotales++;
+                }
+            }
+            return ColumnasTotales;
         }
         public string QuitaComa(string Dato)
         {

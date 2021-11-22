@@ -95,6 +95,10 @@
     <Compile Include="Clases\ClassConsultas.cs" />
     <Compile Include="Clases\ClassDatosFijos.cs" />
     <Compile Include="Clases\ClassError.cs" />
+    <Compile Include="Clases\ClassReg1.cs" />
+    <Compile Include="Clases\ClassReg2.cs" />
+    <Compile Include="Clases\ClassReg3.cs" />
+    <Compile Include="Clases\ClassReg4.cs" />
     <Compile Include="Formularios\FrmCrear.cs">
       <SubType>Form</SubType>
     </Compile>
