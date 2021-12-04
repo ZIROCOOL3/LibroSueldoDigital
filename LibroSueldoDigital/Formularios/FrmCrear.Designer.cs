@@ -47,6 +47,7 @@
             this.LblTipoLiquidacion = new Telerik.WinControls.UI.RadLabel();
             this.CmbIdentificacionEnvio = new Telerik.WinControls.UI.RadDropDownList();
             this.CmbTipoLiquidacion = new Telerik.WinControls.UI.RadDropDownList();
+            this.radRadialGauge1 = new Telerik.WinControls.UI.Gauges.RadRadialGauge();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtRuta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
@@ -60,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.LblTipoLiquidacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbIdentificacionEnvio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbTipoLiquidacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadialGauge1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,11 +229,20 @@
             this.CmbTipoLiquidacion.ThemeName = "Office2019Light";
             this.CmbTipoLiquidacion.Visible = false;
             // 
+            // radRadialGauge1
+            // 
+            this.radRadialGauge1.Location = new System.Drawing.Point(76, 159);
+            this.radRadialGauge1.Name = "radRadialGauge1";
+            this.radRadialGauge1.Size = new System.Drawing.Size(8, 8);
+            this.radRadialGauge1.TabIndex = 12;
+            this.radRadialGauge1.Text = "radRadialGauge1";
+            // 
             // FrmCrear
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 238);
+            this.Controls.Add(this.radRadialGauge1);
             this.Controls.Add(this.CmbTipoLiquidacion);
             this.Controls.Add(this.CmbIdentificacionEnvio);
             this.Controls.Add(this.LblTipoLiquidacion);
@@ -270,6 +281,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.LblTipoLiquidacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbIdentificacionEnvio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbTipoLiquidacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radRadialGauge1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -296,5 +308,6 @@
         private Telerik.WinControls.UI.RadLabel LblTipoLiquidacion;
         private Telerik.WinControls.UI.RadDropDownList CmbIdentificacionEnvio;
         private Telerik.WinControls.UI.RadDropDownList CmbTipoLiquidacion;
+        private Telerik.WinControls.UI.Gauges.RadRadialGauge radRadialGauge1;
     }
 }

@@ -31,3 +31,36 @@ G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\D
 G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\SpreadsheetLight.dll
 G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Formularios.FrmCrear.resources
 G:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Formularios.FrmDatosEmpresa.resources
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Libro Sueldo Digital.exe.config
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Libro Sueldo Digital.exe
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Libro Sueldo Digital.pdb
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\EntityFramework.dll
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\SpreadsheetLight.dll
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\System.Data.SQLite.dll
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.dll
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.UI.dll
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\TelerikCommon.dll
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\EntityFramework.xml
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\System.Data.SQLite.xml
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.xml
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.GridView.xml
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.UI.xml
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.csprojAssemblyReference.cache
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Formularios.FrmCrear.resources
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Formularios.FrmDatosEmpresa.resources
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Formularios.FrmErrores.resources
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.FrmPrincipal.resources
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Properties.Resources.resources
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.csproj.GenerateResource.cache
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\Libro Sueldo Digital.exe.licenses
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.csproj.CoreCompileInputs.cache
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.csproj.CopyComplete
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\Libro Sueldo Digital.exe
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\Libro Sueldo Digital.pdb
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.GridView.dll
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.Themes.Office2019.dll
