@@ -35,11 +35,9 @@
             this.radStatusStrip1 = new Telerik.WinControls.UI.RadStatusStrip();
             this.radLabelElement1 = new Telerik.WinControls.UI.RadLabelElement();
             this.PgbProceso = new Telerik.WinControls.UI.RadProgressBarElement();
-            this.CmdProcesar = new Telerik.WinControls.UI.RadButton();
-            this.CmbSeleccionarArchivo = new Telerik.WinControls.UI.RadButton();
             this.TxtNombreHoja = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.HiloCrearArchivo = new System.ComponentModel.BackgroundWorker();
             this.TxtPeriodo = new Telerik.WinControls.UI.RadTextBox();
             this.LblPeriodo = new Telerik.WinControls.UI.RadLabel();
             this.OfdAbrirArchivo = new System.Windows.Forms.OpenFileDialog();
@@ -48,11 +46,12 @@
             this.CmbIdentificacionEnvio = new Telerik.WinControls.UI.RadDropDownList();
             this.CmbTipoLiquidacion = new Telerik.WinControls.UI.RadDropDownList();
             this.radRadialGauge1 = new Telerik.WinControls.UI.Gauges.RadRadialGauge();
+            this.button1 = new System.Windows.Forms.Button();
+            this.CmdProcesar = new Telerik.WinControls.UI.RadButton();
+            this.CmbSeleccionarArchivo = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtRuta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CmdProcesar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CmbSeleccionarArchivo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtNombreHoja)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtPeriodo)).BeginInit();
@@ -62,6 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.CmbIdentificacionEnvio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbTipoLiquidacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRadialGauge1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmdProcesar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbSeleccionarArchivo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,8 +103,9 @@
             // 
             // PgbProceso
             // 
+            this.PgbProceso.DefaultSize = new System.Drawing.Size(50, 20);
             this.PgbProceso.Minimum = 0;
-            this.PgbProceso.MinSize = new System.Drawing.Size(300, 0);
+            this.PgbProceso.MinSize = new System.Drawing.Size(500, 0);
             this.PgbProceso.Name = "PgbProceso";
             this.PgbProceso.SeparatorColor1 = System.Drawing.Color.White;
             this.PgbProceso.SeparatorColor2 = System.Drawing.Color.White;
@@ -118,30 +120,8 @@
             this.PgbProceso.StepWidth = 14;
             this.PgbProceso.SweepAngle = 90;
             this.PgbProceso.Text = "";
-            this.PgbProceso.Value1 = 100;
-            this.PgbProceso.Value2 = 100;
-            // 
-            // CmdProcesar
-            // 
-            this.CmdProcesar.Image = global::LibroSueldoDigital.Properties.Resources.procesar_32;
-            this.CmdProcesar.Location = new System.Drawing.Point(250, 159);
-            this.CmdProcesar.Name = "CmdProcesar";
-            this.CmdProcesar.Size = new System.Drawing.Size(142, 34);
-            this.CmdProcesar.TabIndex = 6;
-            this.CmdProcesar.Text = "Procesar";
-            this.CmdProcesar.ThemeName = "Office2019Light";
-            this.CmdProcesar.Click += new System.EventHandler(this.CmdProcesar_Click);
-            // 
-            // CmbSeleccionarArchivo
-            // 
-            this.CmbSeleccionarArchivo.Image = global::LibroSueldoDigital.Properties.Resources.buscar_32;
-            this.CmbSeleccionarArchivo.Location = new System.Drawing.Point(415, 24);
-            this.CmbSeleccionarArchivo.Name = "CmbSeleccionarArchivo";
-            this.CmbSeleccionarArchivo.Size = new System.Drawing.Size(142, 34);
-            this.CmbSeleccionarArchivo.TabIndex = 2;
-            this.CmbSeleccionarArchivo.Text = "Seleccionar";
-            this.CmbSeleccionarArchivo.ThemeName = "Office2019Light";
-            this.CmbSeleccionarArchivo.Click += new System.EventHandler(this.CmbSeleccionarArchivo_Click);
+            this.PgbProceso.Value1 = 0;
+            this.PgbProceso.Value2 = 0;
             // 
             // TxtNombreHoja
             // 
@@ -160,6 +140,13 @@
             this.radLabel2.TabIndex = 5;
             this.radLabel2.Text = "Nombre de la hoja";
             this.radLabel2.ThemeName = "Office2019Light";
+            // 
+            // HiloCrearArchivo
+            // 
+            this.HiloCrearArchivo.WorkerReportsProgress = true;
+            this.HiloCrearArchivo.DoWork += new System.ComponentModel.DoWorkEventHandler(this.HiloCrearArchivo_DoWork);
+            this.HiloCrearArchivo.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.HiloCrearArchivo_ProgressChanged);
+            this.HiloCrearArchivo.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.HiloCrearArchivo_RunWorkerCompleted);
             // 
             // TxtPeriodo
             // 
@@ -237,11 +224,45 @@
             this.radRadialGauge1.TabIndex = 12;
             this.radRadialGauge1.Text = "radRadialGauge1";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(520, 170);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // CmdProcesar
+            // 
+            this.CmdProcesar.Image = global::LibroSueldoDigital.Properties.Resources.procesar_32;
+            this.CmdProcesar.Location = new System.Drawing.Point(250, 159);
+            this.CmdProcesar.Name = "CmdProcesar";
+            this.CmdProcesar.Size = new System.Drawing.Size(142, 34);
+            this.CmdProcesar.TabIndex = 6;
+            this.CmdProcesar.Text = "Procesar";
+            this.CmdProcesar.ThemeName = "Office2019Light";
+            this.CmdProcesar.Click += new System.EventHandler(this.CmdProcesar_Click);
+            // 
+            // CmbSeleccionarArchivo
+            // 
+            this.CmbSeleccionarArchivo.Image = global::LibroSueldoDigital.Properties.Resources.buscar_32;
+            this.CmbSeleccionarArchivo.Location = new System.Drawing.Point(415, 24);
+            this.CmbSeleccionarArchivo.Name = "CmbSeleccionarArchivo";
+            this.CmbSeleccionarArchivo.Size = new System.Drawing.Size(142, 34);
+            this.CmbSeleccionarArchivo.TabIndex = 2;
+            this.CmbSeleccionarArchivo.Text = "Seleccionar";
+            this.CmbSeleccionarArchivo.ThemeName = "Office2019Light";
+            this.CmbSeleccionarArchivo.Click += new System.EventHandler(this.CmbSeleccionarArchivo_Click);
+            // 
             // FrmCrear
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 238);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.radRadialGauge1);
             this.Controls.Add(this.CmbTipoLiquidacion);
             this.Controls.Add(this.CmbIdentificacionEnvio);
@@ -271,8 +292,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtRuta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CmdProcesar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CmbSeleccionarArchivo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtNombreHoja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtPeriodo)).EndInit();
@@ -282,6 +301,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.CmbIdentificacionEnvio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbTipoLiquidacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRadialGauge1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmdProcesar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbSeleccionarArchivo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -300,7 +321,7 @@
         private Telerik.WinControls.UI.RadProgressBarElement PgbProceso;
         private Telerik.WinControls.UI.RadTextBox TxtNombreHoja;
         private Telerik.WinControls.UI.RadLabel radLabel2;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker HiloCrearArchivo;
         private Telerik.WinControls.UI.RadTextBox TxtPeriodo;
         private Telerik.WinControls.UI.RadLabel LblPeriodo;
         private System.Windows.Forms.OpenFileDialog OfdAbrirArchivo;
@@ -309,5 +330,6 @@
         private Telerik.WinControls.UI.RadDropDownList CmbIdentificacionEnvio;
         private Telerik.WinControls.UI.RadDropDownList CmbTipoLiquidacion;
         private Telerik.WinControls.UI.Gauges.RadRadialGauge radRadialGauge1;
+        private System.Windows.Forms.Button button1;
     }
 }

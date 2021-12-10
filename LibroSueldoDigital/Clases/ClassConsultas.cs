@@ -220,7 +220,7 @@ namespace LibroSueldoDigital.Clases
                     NombreEmpleado=@NombreEmpleado,
                     DiasBase=@DiasBase,
                     Legajo=@Legajo,
-                    DependenciaDeRevista=@DependenciaDeRevista,,
+                    DependenciaDeRevista=@DependenciaDeRevista,
                     CBU=@CBU,
                     CantDeDiasParaProporcionarElTope=@CantDeDiasParaProporcionarElTope,
                     FormaDePago=@FormaDePago,
