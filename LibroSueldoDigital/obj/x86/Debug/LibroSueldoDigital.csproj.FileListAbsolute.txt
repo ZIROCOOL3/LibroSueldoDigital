@@ -98,3 +98,4 @@ d:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\T
 d:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\bin\Debug\Telerik.WinControls.UI.xml
 d:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.csproj.CopyComplete
 d:\datos\Mis documentos\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Formularios.FrmModificacionDatosFijos.resources
+C:\Users\JAVIER\Documents\GitHub\LibroSueldoDigital\LibroSueldoDigital\obj\x86\Debug\LibroSueldoDigital.Formularios.FrmModificacionDatosFijos.resources
