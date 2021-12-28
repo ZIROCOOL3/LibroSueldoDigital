@@ -25,6 +25,7 @@ namespace LibroSueldoDigital.Formularios
             {
                 TxtRazonSocial.Text = item[1].ToString();
                 TxtCuit.Text = item[2].ToString();
+                TxtDiaDePago.Text= item[3].ToString();
             }
         }
  
@@ -35,7 +36,7 @@ namespace LibroSueldoDigital.Formularios
 
         private void CmdGuardar_Click(object sender, EventArgs e)
         {
-            instconsultas.InsertarDatosEmpresa(TxtRazonSocial.Text,long.Parse(TxtCuit.Text.Replace("-","")));
+            instconsultas.InsertarDatosEmpresa(TxtRazonSocial.Text,long.Parse(TxtCuit.Text.Replace("-","")),int.Parse(TxtDiaDePago.Text));
             this.Close();
         }
     }

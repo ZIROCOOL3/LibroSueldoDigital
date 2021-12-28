@@ -45,7 +45,19 @@ namespace LibroSueldoDigital.Clases
             }
             return cuit;
         }
-
+        public string DiaDePago()
+        {
+            DataTable dt2 = new DataTable();
+            string DiaDePago = string.Empty;
+            SQLiteDataAdapter ad1 = new SQLiteDataAdapter("SELECT * FROM  empresa", instCon.abrirConexion());
+            ad1.Fill(dt2);
+            instCon.cerrarConexion();
+            foreach (DataRow item in dt2.Rows)
+            {
+                DiaDePago =  item["DiaDePago"].ToString();
+            }
+            return DiaDePago;
+        }
         public string TraerCodigoDeAfip(string CodigoEmpresa)
         {
             DataTable dt2 = new DataTable();
@@ -72,19 +84,19 @@ namespace LibroSueldoDigital.Clases
             }
             return DebitoCredito;
         }
-        public int TraerNumeroUltimaLiquidacion()
-        {
-            DataTable dt2 = new DataTable();
-            int ultimaLiquidacion = 0;
-            SQLiteDataAdapter ad1 = new SQLiteDataAdapter("SELECT * FROM  liquidaciones order by id", instCon.abrirConexion());
-            ad1.Fill(dt2);
-            instCon.cerrarConexion();
-            foreach (DataRow item in dt2.Rows)
-            {
-                ultimaLiquidacion = int.Parse(item["id"].ToString());
-            }
-            return ultimaLiquidacion;
-        }
+        //public int TraerNumeroUltimaLiquidacion()
+        //{
+        //    DataTable dt2 = new DataTable();
+        //    int ultimaLiquidacion = 0;
+        //    SQLiteDataAdapter ad1 = new SQLiteDataAdapter("SELECT * FROM  liquidaciones order by id", instCon.abrirConexion());
+        //    ad1.Fill(dt2);
+        //    instCon.cerrarConexion();
+        //    foreach (DataRow item in dt2.Rows)
+        //    {
+        //        ultimaLiquidacion = int.Parse(item["id"].ToString());
+        //    }
+        //    return ultimaLiquidacion;
+        //}
         public void InsertarDatosFijos(List<ClassDatosFijos> ListaDatosFijos)
         {
             //recorrer la lista
@@ -296,12 +308,13 @@ namespace LibroSueldoDigital.Clases
             instCon.cerrarConexion();
 
         }
-        public void InsertarDatosEmpresa( string RazonSocial, long Cuit)
+        public void InsertarDatosEmpresa( string RazonSocial, long Cuit,int DiaDePago)
         {
             SQLiteCommand nComando = new SQLiteCommand(@"UPDATE empresa SET
-             RazonSocial=@RazonSocial,Cuit=@Cuit", instCon.abrirConexion());
+             RazonSocial=@RazonSocial,Cuit=@Cuit,DiaDePago=@DiaDePago", instCon.abrirConexion());
             nComando.Parameters.AddWithValue("@RazonSocial", RazonSocial);
             nComando.Parameters.AddWithValue("@Cuit", Cuit);
+            nComando.Parameters.AddWithValue("@DiaDePago", DiaDePago);
             nComando.ExecuteNonQuery();
             instCon.cerrarConexion();
 

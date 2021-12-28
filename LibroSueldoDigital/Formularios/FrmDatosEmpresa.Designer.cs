@@ -36,12 +36,16 @@
             this.TxtCuit = new Telerik.WinControls.UI.RadMaskedEditBox();
             this.CmbCancelar = new Telerik.WinControls.UI.RadButton();
             this.CmdGuardar = new Telerik.WinControls.UI.RadButton();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.TxtDiaDePago = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.TxtRazonSocial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtCuit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbCancelar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmdGuardar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtDiaDePago)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,7 +93,7 @@
             this.CmbCancelar.Location = new System.Drawing.Point(162, 152);
             this.CmbCancelar.Name = "CmbCancelar";
             this.CmbCancelar.Size = new System.Drawing.Size(142, 34);
-            this.CmbCancelar.TabIndex = 3;
+            this.CmbCancelar.TabIndex = 4;
             this.CmbCancelar.Text = "Cancelar";
             this.CmbCancelar.ThemeName = "Office2019Light";
             this.CmbCancelar.Click += new System.EventHandler(this.radButton1_Click);
@@ -100,16 +104,49 @@
             this.CmdGuardar.Location = new System.Drawing.Point(14, 152);
             this.CmdGuardar.Name = "CmdGuardar";
             this.CmdGuardar.Size = new System.Drawing.Size(142, 34);
-            this.CmdGuardar.TabIndex = 2;
+            this.CmdGuardar.TabIndex = 3;
             this.CmdGuardar.Text = "Guardar";
             this.CmdGuardar.ThemeName = "Office2019Light";
             this.CmdGuardar.Click += new System.EventHandler(this.CmdGuardar_Click);
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(166, 61);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(73, 19);
+            this.radLabel3.TabIndex = 17;
+            this.radLabel3.Text = "Dia de Pago";
+            this.radLabel3.ThemeName = "Office2019Light";
+            // 
+            // TxtDiaDePago
+            // 
+            this.TxtDiaDePago.Location = new System.Drawing.Point(165, 83);
+            this.TxtDiaDePago.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.TxtDiaDePago.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.TxtDiaDePago.Name = "TxtDiaDePago";
+            this.TxtDiaDePago.Size = new System.Drawing.Size(126, 20);
+            this.TxtDiaDePago.TabIndex = 2;
+            this.TxtDiaDePago.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // FrmDatosEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(327, 198);
+            this.Controls.Add(this.TxtDiaDePago);
+            this.Controls.Add(this.radLabel3);
             this.Controls.Add(this.CmbCancelar);
             this.Controls.Add(this.TxtCuit);
             this.Controls.Add(this.radLabel2);
@@ -134,6 +171,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.TxtCuit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbCancelar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmdGuardar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtDiaDePago)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -149,5 +188,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadMaskedEditBox TxtCuit;
         private Telerik.WinControls.UI.RadButton CmbCancelar;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private System.Windows.Forms.NumericUpDown TxtDiaDePago;
     }
 }

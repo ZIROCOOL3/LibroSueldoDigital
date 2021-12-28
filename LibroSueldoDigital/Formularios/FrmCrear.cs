@@ -39,7 +39,7 @@ namespace LibroSueldoDigital.Formularios
         List<ClassReg3> Reg03 = new List<ClassReg3>();
         List<ClassReg4> Reg04 = new List<ClassReg4>();
 
-        int NumeroUltimaLiquidacion = 0;
+        int NumerodeLiquidacion = 0;
         string DiasBase = string.Empty;
         string CuilEmpleado = string.Empty;
         string IdentEnvio = string.Empty;
@@ -285,12 +285,68 @@ namespace LibroSueldoDigital.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string text =
-               "A class is the most powerful data type in C#. Like a structure, " +
-               "a class defines the data and behavior of the data type. ";
-            string[] lines = { "First line", "Second line", "Third line" };
-            File.WriteAllLines(@"C:\LibroSueldoDigital\WriteText.txt", lines);
-            
+            String line;
+            string Salida = string.Empty;
+            try
+            {
+                //Pass the file path and file name to the StreamReader constructor
+                StreamReader sr = new StreamReader("C:\\LibroSueldoDigital\\Liquidacion-202111-RegGral.txt");
+                //Read the first line of text
+                line = sr.ReadLine();
+                int i = 0;
+                //Continue to read until you reach end of file
+                while (line != null)
+                {
+                    //write the line to console window
+                    //Salida= Salida+line;
+                    //Read the next line
+                    line = sr.ReadLine();
+                    i++;
+                }
+                //close the file
+                sr.Close();
+                int max = i;
+                sr = new StreamReader("C:\\LibroSueldoDigital\\Liquidacion-202111-RegGral.txt");
+                //Read the first line of text
+                line = sr.ReadLine();
+                i = 0;
+                //Continue to read until you reach end of file
+                while (line != null)
+                {
+                    if (i == max-1)
+                    {
+                        string replaceWith = "";
+                        string removedBreaks = line.Replace("\r\n", replaceWith).Replace("\n", replaceWith).Replace("\r", replaceWith);
+                        string result = Regex.Replace(line, @"(\r\n?|\r?\n)+", " ");
+                        Salida = Salida + result;
+                    }
+                    else
+                    {
+                        Salida = Salida + line.ToString ()+ Environment.NewLine;
+                    }
+                    //write the line to console window
+
+                    //Read the next line
+                    line = sr.ReadLine();
+                    i++;
+                }
+                //close the file
+                sr.Close();
+                string text =
+            "A class is the most powerful data type in C#. Like a structure, "+ Environment.NewLine+
+            "a class defines the data and behavior of the data type. ";
+
+                File.WriteAllText(@"C:\LibroSueldoDigital\WriteText.txt", text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Executing finally block.");
+            }
+
         }
 
         private void HiloCrearArchivo_DoWork(object sender, DoWorkEventArgs e)
@@ -686,7 +742,7 @@ namespace LibroSueldoDigital.Formularios
                     ListaDeErrores.Add(new ClassError { Numero = 5, Descripcion = "Verifique que el nombre de la hoja de excel sea correcta", ArchivoError = "Excel liquidaciones" });
                     error = true;
                 }
-                NumeroUltimaLiquidacion = instConsultas.TraerNumeroUltimaLiquidacion() + 1;
+                NumerodeLiquidacion = int.Parse(TxtNumeroDeLiquidaicon.Value.ToString()); 
                 CrearCarpetaSalida();
 
                 Columnas = CantidadColumnas(RutaArchivoLiquidacion, TxtNombreHoja.Text);
@@ -716,7 +772,7 @@ namespace LibroSueldoDigital.Formularios
                     IdentEnvio = IdentEnvio,
                     Periodo = TxtPeriodo.Text,
                     TipoLiquidacion = TipoLiquidacion,
-                    NumeroLiquidacion = Rellena("0", NumeroUltimaLiquidacion.ToString(), 5, true),
+                    NumeroLiquidacion = Rellena("0", NumerodeLiquidacion.ToString(), 5, true),
                     DiasBase = DiasBase,
                     CantRegistros = Rellena("0", Columnas.ToString(), 6, true),
 
@@ -757,7 +813,7 @@ namespace LibroSueldoDigital.Formularios
                             DependenciaDeRevista = item["DependenciaDeRevista"].ToString(),
                             Cbu = item["CBU"].ToString(),
                             DiasPropTope = item["CantDeDiasParaProporcionarElTope"].ToString(),
-                            FechaPago = TxtPeriodo.Text + "10",
+                            FechaPago = TxtPeriodo.Text + Rellena("0", instConsultas.DiaDePago(), 2,true),
                             FechaRubrica = "        ",
                             FormaPago = item["FormaDePago"].ToString(),
                         });
@@ -956,43 +1012,57 @@ namespace LibroSueldoDigital.Formularios
             {
                 //proceso archivo
                 instConsultas.VerificarExixtenciaArchivo("RegGral");
-
-                using (StreamWriter sw = File.CreateText(instConsultas.path))
+                string textoSalida = string.Empty;
+                ///escribo valor registro 01
+                foreach (var item in Reg01)
                 {
-                    ///escribo valor registro 01
-                    foreach (var item in Reg01)
-                    {
-                        sw.WriteLine(item.IdRegistro + item.Cuit + item.IdentEnvio + item.Periodo + item.TipoLiquidacion + item.NumeroLiquidacion + item.DiasBase + item.CantRegistros);
-                    }
-
-                    ///escribo valor registro 02
-                    foreach (var item in Reg02)
-                    {
-                        sw.WriteLine(item.IdRegistro + item.CuilEmpleado + item.Legajo + item.DependenciaDeRevista +
-                            item.Cbu + item.DiasPropTope + item.FechaPago + item.FechaRubrica + item.FormaPago);
-                    }
-
-                    ///escribo valor registro 03
-                    foreach (var item in Reg03)
-                    {
-                        sw.WriteLine(item.IdRegistro + item.CuilEmpleado + item.CodigoConcepto + item.Cantidad + item.Unidades +
-                            item.Importe + item.CreditoDebito + item.PeriodoAjuste);
-                    }
-                    ///escribo valor registro 04
-                    foreach (var item in Reg04)
-                    {
-                        sw.WriteLine(item.IdRegistro + item.CuilEmpleado + item.conyugue + item.Hijos + item.MarcaCct +
-                            item.MarcaScvo + item.MarcaReduccion + item.TipoEmpresa + item.TipoOperacion + item.SituacionDeRevista + item.CodigoCondicion +
-                            item.CodigoActividad + item.CodigoContratacion + item.CodigoSiniestrado + item.CodigoLocalidad + item.SituacionRevista1 + item.DiaInicioSituacion1 +
-                            item.SituacionRevista2 + item.DiaInicioSituacion2 + item.SituacionRevista3 + item.DiaInicioSituacion3 + item.DiasTrabajado + item.HorasTrabajdo +
-                            item.PorAporteSS + item.PorTareaDiferencial + item.CodigoObraSocial + item.CantidadAherente + item.AporteAdicOS + item.ContAdicOS +
-                            item.BaseCalculoAporteOsFsr + item.BaseCalculoOsFsr + item.BaseCalculoLRT + item.RenumeracionMatAnses + item.RenumeracionBruta + item.BaseImponible1 +
-                            item.BaseImponible2 + item.BaseImponible3 + item.BaseImponible4 + item.BaseImponible5 + item.BaseImponible6 + item.BaseImponible7 +
-                            item.BaseImponible8 + item.BaseImponible9 + item.BaseCalculoSegSocial + item.BaseCalculoContriSegSocial + item.BaseImponible10 + item.ImporteDetraer);
-                    }
-
+                    textoSalida = item.IdRegistro + item.Cuit + item.IdentEnvio + item.Periodo + item.TipoLiquidacion + item.NumeroLiquidacion + item.DiasBase + item.CantRegistros + Environment.NewLine;
                 }
-                RemoveWhiteLines(instConsultas.path, @"C:\LibroSueldoDigital\ttt.txt");
+                    
+                ///escribo valor registro 02
+                foreach (var item in Reg02)
+                {
+                    textoSalida = textoSalida + item.IdRegistro + item.CuilEmpleado + item.Legajo + item.DependenciaDeRevista +
+                        item.Cbu + item.DiasPropTope + item.FechaPago + item.FechaRubrica + item.FormaPago + Environment.NewLine;
+                }
+
+                ///escribo valor registro 03
+                foreach (var item in Reg03)
+                {
+                    textoSalida = textoSalida + item.IdRegistro + item.CuilEmpleado + item.CodigoConcepto + item.Cantidad + item.Unidades +
+                        item.Importe + item.CreditoDebito + item.PeriodoAjuste + Environment.NewLine;
+                }
+                ///escribo valor registro 04
+                int max = Reg04.Count;
+                int i = 1;
+                foreach (var item in Reg04)
+                {
+                    if (i==max)
+                    {
+                        textoSalida = textoSalida + item.IdRegistro + item.CuilEmpleado + item.conyugue + item.Hijos + item.MarcaCct +
+                                                    item.MarcaScvo + item.MarcaReduccion + item.TipoEmpresa + item.TipoOperacion + item.SituacionDeRevista + item.CodigoCondicion +
+                                                    item.CodigoActividad + item.CodigoContratacion + item.CodigoSiniestrado + item.CodigoLocalidad + item.SituacionRevista1 + item.DiaInicioSituacion1 +
+                                                    item.SituacionRevista2 + item.DiaInicioSituacion2 + item.SituacionRevista3 + item.DiaInicioSituacion3 + item.DiasTrabajado + item.HorasTrabajdo +
+                                                    item.PorAporteSS + item.PorTareaDiferencial + item.CodigoObraSocial + item.CantidadAherente + item.AporteAdicOS + item.ContAdicOS +
+                                                    item.BaseCalculoAporteOsFsr + item.BaseCalculoOsFsr + item.BaseCalculoLRT + item.RenumeracionMatAnses + item.RenumeracionBruta + item.BaseImponible1 +
+                                                    item.BaseImponible2 + item.BaseImponible3 + item.BaseImponible4 + item.BaseImponible5 + item.BaseImponible6 + item.BaseImponible7 +
+                                                    item.BaseImponible8 + item.BaseImponible9 + item.BaseCalculoSegSocial + item.BaseCalculoContriSegSocial + item.BaseImponible10 + item.ImporteDetraer;
+                    }
+                    else
+                    {
+                        textoSalida = textoSalida + item.IdRegistro + item.CuilEmpleado + item.conyugue + item.Hijos + item.MarcaCct +
+                        item.MarcaScvo + item.MarcaReduccion + item.TipoEmpresa + item.TipoOperacion + item.SituacionDeRevista + item.CodigoCondicion +
+                        item.CodigoActividad + item.CodigoContratacion + item.CodigoSiniestrado + item.CodigoLocalidad + item.SituacionRevista1 + item.DiaInicioSituacion1 +
+                        item.SituacionRevista2 + item.DiaInicioSituacion2 + item.SituacionRevista3 + item.DiaInicioSituacion3 + item.DiasTrabajado + item.HorasTrabajdo +
+                        item.PorAporteSS + item.PorTareaDiferencial + item.CodigoObraSocial + item.CantidadAherente + item.AporteAdicOS + item.ContAdicOS +
+                        item.BaseCalculoAporteOsFsr + item.BaseCalculoOsFsr + item.BaseCalculoLRT + item.RenumeracionMatAnses + item.RenumeracionBruta + item.BaseImponible1 +
+                        item.BaseImponible2 + item.BaseImponible3 + item.BaseImponible4 + item.BaseImponible5 + item.BaseImponible6 + item.BaseImponible7 +
+                        item.BaseImponible8 + item.BaseImponible9 + item.BaseCalculoSegSocial + item.BaseCalculoContriSegSocial + item.BaseImponible10 + item.ImporteDetraer+ Environment.NewLine;
+                    }
+                    i++;
+                }
+             
+                File.WriteAllText(@"c:\LibroSueldoDigital\Liquidacion" + "-" + instConsultas.periodo + "-RegGral.txt", textoSalida);
                 RadMessageBox.Show("Listo");
 
             }
