@@ -14,7 +14,17 @@ namespace LibroSueldoDigital
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPrincipal());
+            //Application.Run(new FrmPrincipal());
+            Formularios.FrmSplash login = new Formularios.FrmSplash();
+            if (login.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new FrmPrincipal());
+            }
+            else
+            {
+                MessageBox.Show("Error de Licencia", "Libro Sueldo Digital", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
         }
     }
 }

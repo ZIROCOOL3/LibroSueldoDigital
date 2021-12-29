@@ -49,15 +49,15 @@ namespace LibroSueldoDigital
 
         private void CmbAgregarConcepto_Click(object sender, EventArgs e)
         {
-            FrmCrear formCrearLibro = new FrmCrear();
-            formCrearLibro.Conceptos = true;
-            formCrearLibro.Show();
+            //FrmCrear formCrearLibro = new FrmCrear();
+            //formCrearLibro.Conceptos = true;
+            //formCrearLibro.Show();
         }
 
         private void CmbAltaDatosFijos_Click(object sender, EventArgs e)
         {
             FrmCrear formCrearLibro = new FrmCrear();
-            formCrearLibro.DatosFIjos = true;
+            formCrearLibro.DatosFijosAlta = true;
             formCrearLibro.Show();
         }
 
@@ -112,6 +112,25 @@ namespace LibroSueldoDigital
             }
             return Dato;
 
+        }
+
+        private void CmbModificarDatosFijos_Click(object sender, EventArgs e)
+        {
+            FrmCrear formCrearLibro = new FrmCrear();
+            formCrearLibro.DatosFijosModificacion = true;
+            formCrearLibro.Show();
+        }
+
+        private void CmbModificarConceptos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbAcercaDe_Click(object sender, EventArgs e)
+        {
+            FrmAcercaDe frmAcerca = new FrmAcercaDe();
+            frmAcerca.ShowDialog();
+        
         }
     }
 }

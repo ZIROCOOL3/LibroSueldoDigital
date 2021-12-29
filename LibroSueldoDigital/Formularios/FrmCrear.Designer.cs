@@ -46,10 +46,9 @@
             this.CmbIdentificacionEnvio = new Telerik.WinControls.UI.RadDropDownList();
             this.CmbTipoLiquidacion = new Telerik.WinControls.UI.RadDropDownList();
             this.radRadialGauge1 = new Telerik.WinControls.UI.Gauges.RadRadialGauge();
-            this.button1 = new System.Windows.Forms.Button();
             this.CmdProcesar = new Telerik.WinControls.UI.RadButton();
             this.CmbSeleccionarArchivo = new Telerik.WinControls.UI.RadButton();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.LblNumeroLiquidacion = new Telerik.WinControls.UI.RadLabel();
             this.TxtNumeroDeLiquidaicon = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtRuta)).BeginInit();
@@ -65,7 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radRadialGauge1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmdProcesar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbSeleccionarArchivo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LblNumeroLiquidacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtNumeroDeLiquidaicon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -228,16 +227,6 @@
             this.radRadialGauge1.TabIndex = 12;
             this.radRadialGauge1.Text = "radRadialGauge1";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(520, 170);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // CmdProcesar
             // 
             this.CmdProcesar.Image = global::LibroSueldoDigital.Properties.Resources.procesar_32;
@@ -260,14 +249,14 @@
             this.CmbSeleccionarArchivo.ThemeName = "Office2019Light";
             this.CmbSeleccionarArchivo.Click += new System.EventHandler(this.CmbSeleccionarArchivo_Click);
             // 
-            // radLabel3
+            // LblNumeroLiquidacion
             // 
-            this.radLabel3.Location = new System.Drawing.Point(422, 76);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(134, 19);
-            this.radLabel3.TabIndex = 15;
-            this.radLabel3.Text = "Numero de Liquidacion";
-            this.radLabel3.ThemeName = "Office2019Light";
+            this.LblNumeroLiquidacion.Location = new System.Drawing.Point(422, 76);
+            this.LblNumeroLiquidacion.Name = "LblNumeroLiquidacion";
+            this.LblNumeroLiquidacion.Size = new System.Drawing.Size(134, 19);
+            this.LblNumeroLiquidacion.TabIndex = 15;
+            this.LblNumeroLiquidacion.Text = "Numero de Liquidacion";
+            this.LblNumeroLiquidacion.ThemeName = "Office2019Light";
             // 
             // TxtNumeroDeLiquidaicon
             // 
@@ -297,8 +286,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 238);
             this.Controls.Add(this.TxtNumeroDeLiquidaicon);
-            this.Controls.Add(this.radLabel3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.LblNumeroLiquidacion);
             this.Controls.Add(this.radRadialGauge1);
             this.Controls.Add(this.CmbTipoLiquidacion);
             this.Controls.Add(this.CmbIdentificacionEnvio);
@@ -339,7 +327,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radRadialGauge1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmdProcesar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbSeleccionarArchivo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LblNumeroLiquidacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtNumeroDeLiquidaicon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -368,8 +356,7 @@
         private Telerik.WinControls.UI.RadDropDownList CmbIdentificacionEnvio;
         private Telerik.WinControls.UI.RadDropDownList CmbTipoLiquidacion;
         private Telerik.WinControls.UI.Gauges.RadRadialGauge radRadialGauge1;
-        private System.Windows.Forms.Button button1;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadLabel LblNumeroLiquidacion;
         private System.Windows.Forms.NumericUpDown TxtNumeroDeLiquidaicon;
     }
 }

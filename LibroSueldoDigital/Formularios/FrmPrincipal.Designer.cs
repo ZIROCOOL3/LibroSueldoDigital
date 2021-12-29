@@ -39,6 +39,7 @@
             this.CmbAgregarConcepto = new Telerik.WinControls.UI.RadButtonElement();
             this.CmbModificarConceptos = new Telerik.WinControls.UI.RadButtonElement();
             this.CmbListarConceptos = new Telerik.WinControls.UI.RadButtonElement();
+            this.CmdExportarCOnceptos = new Telerik.WinControls.UI.RadButtonElement();
             this.radRibbonBarGroup2 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.radRibbonBarButtonGroup1 = new Telerik.WinControls.UI.RadRibbonBarButtonGroup();
             this.CmbAltaDatosFijos = new Telerik.WinControls.UI.RadButtonElement();
@@ -50,8 +51,10 @@
             this.radRibbonBarGroup4 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.radRibbonBarButtonGroup4 = new Telerik.WinControls.UI.RadRibbonBarButtonGroup();
             this.CmbDatosEmpresa = new Telerik.WinControls.UI.RadButtonElement();
+            this.radRibbonBarGroup5 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radRibbonBarButtonGroup5 = new Telerik.WinControls.UI.RadRibbonBarButtonGroup();
+            this.CmbAcercaDe = new Telerik.WinControls.UI.RadButtonElement();
             this.radRibbonFormBehavior1 = new Telerik.WinControls.UI.RadRibbonFormBehavior();
-            this.CmdExportarCOnceptos = new Telerik.WinControls.UI.RadButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.DtgDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtgDatos.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).BeginInit();
@@ -77,7 +80,7 @@
             this.DtgDatos.ReadOnly = true;
             this.DtgDatos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.DtgDatos.ShowGroupPanel = false;
-            this.DtgDatos.Size = new System.Drawing.Size(712, 230);
+            this.DtgDatos.Size = new System.Drawing.Size(811, 230);
             this.DtgDatos.TabIndex = 1;
             this.DtgDatos.TitleText = "Datos FIjos";
             // 
@@ -87,9 +90,9 @@
             this.ribbonTab1});
             this.radRibbonBar1.Location = new System.Drawing.Point(0, 0);
             this.radRibbonBar1.Name = "radRibbonBar1";
-            this.radRibbonBar1.Size = new System.Drawing.Size(712, 171);
+            this.radRibbonBar1.Size = new System.Drawing.Size(811, 171);
             this.radRibbonBar1.TabIndex = 0;
-            this.radRibbonBar1.Text = "Libro Sueldo Digital";
+            this.radRibbonBar1.Text = "Libro Sueldo Digital 1.0";
             // 
             // ribbonTab1
             // 
@@ -98,7 +101,8 @@
             this.radRibbonBarGroup1,
             this.radRibbonBarGroup2,
             this.radRibbonBarGroup3,
-            this.radRibbonBarGroup4});
+            this.radRibbonBarGroup4,
+            this.radRibbonBarGroup5});
             this.ribbonTab1.Name = "ribbonTab1";
             this.ribbonTab1.Text = "Menu";
             this.ribbonTab1.UseMnemonic = false;
@@ -140,6 +144,7 @@
             this.CmbModificarConceptos.Text = "Modificar";
             this.CmbModificarConceptos.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
             this.CmbModificarConceptos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.CmbModificarConceptos.Click += new System.EventHandler(this.CmbModificarConceptos_Click);
             // 
             // CmbListarConceptos
             // 
@@ -149,6 +154,12 @@
             this.CmbListarConceptos.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
             this.CmbListarConceptos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.CmbListarConceptos.Click += new System.EventHandler(this.CmbListarConceptos_Click);
+            // 
+            // CmdExportarCOnceptos
+            // 
+            this.CmdExportarCOnceptos.Name = "CmdExportarCOnceptos";
+            this.CmdExportarCOnceptos.Text = "Exportar";
+            this.CmdExportarCOnceptos.Click += new System.EventHandler(this.CmdExportarCOnceptos_Click);
             // 
             // radRibbonBarGroup2
             // 
@@ -185,6 +196,7 @@
             this.CmbModificarDatosFijos.Text = "Modificar";
             this.CmbModificarDatosFijos.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
             this.CmbModificarDatosFijos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.CmbModificarDatosFijos.Click += new System.EventHandler(this.CmbModificarDatosFijos_Click);
             // 
             // CmdListarDatosFijos
             // 
@@ -245,21 +257,41 @@
             this.CmbDatosEmpresa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.CmbDatosEmpresa.Click += new System.EventHandler(this.CmbDatosEmpresa_Click);
             // 
+            // radRibbonBarGroup5
+            // 
+            this.radRibbonBarGroup5.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radRibbonBarButtonGroup5});
+            this.radRibbonBarGroup5.Name = "radRibbonBarGroup5";
+            this.radRibbonBarGroup5.Text = "Info";
+            // 
+            // radRibbonBarButtonGroup5
+            // 
+            this.radRibbonBarButtonGroup5.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.CmbAcercaDe});
+            this.radRibbonBarButtonGroup5.Name = "radRibbonBarButtonGroup5";
+            this.radRibbonBarButtonGroup5.Padding = new System.Windows.Forms.Padding(1);
+            this.radRibbonBarButtonGroup5.ShowBorder = false;
+            // 
+            // CmbAcercaDe
+            // 
+            this.CmbAcercaDe.Image = global::LibroSueldoDigital.Properties.Resources.icon_48;
+            this.CmbAcercaDe.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CmbAcercaDe.Name = "CmbAcercaDe";
+            this.CmbAcercaDe.ShowBorder = false;
+            this.CmbAcercaDe.Text = "Acerca Del Programa";
+            this.CmbAcercaDe.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+            this.CmbAcercaDe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.CmbAcercaDe.Click += new System.EventHandler(this.CmbAcercaDe_Click);
+            // 
             // radRibbonFormBehavior1
             // 
             this.radRibbonFormBehavior1.Form = this;
-            // 
-            // CmdExportarCOnceptos
-            // 
-            this.CmdExportarCOnceptos.Name = "CmdExportarCOnceptos";
-            this.CmdExportarCOnceptos.Text = "Exportar";
-            this.CmdExportarCOnceptos.Click += new System.EventHandler(this.CmdExportarCOnceptos_Click);
             // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 401);
+            this.ClientSize = new System.Drawing.Size(811, 401);
             this.Controls.Add(this.DtgDatos);
             this.Controls.Add(this.radRibbonBar1);
             this.FormBehavior = this.radRibbonFormBehavior1;
@@ -270,7 +302,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Libro Sueldo Digital";
+            this.Text = "Libro Sueldo Digital 1.0";
             this.ThemeName = "Office2019Light";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.DtgDatos.MasterTemplate)).EndInit();
@@ -306,5 +338,8 @@
         private Telerik.WinControls.UI.RadRibbonBarButtonGroup radRibbonBarButtonGroup4;
         private Telerik.WinControls.UI.RadButtonElement CmbDatosEmpresa;
         private Telerik.WinControls.UI.RadButtonElement CmdExportarCOnceptos;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup5;
+        private Telerik.WinControls.UI.RadRibbonBarButtonGroup radRibbonBarButtonGroup5;
+        private Telerik.WinControls.UI.RadButtonElement CmbAcercaDe;
     }
 }

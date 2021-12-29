@@ -304,8 +304,9 @@ namespace LibroSueldoDigital.Clases
                 nComando.Parameters.AddWithValue("@BaseCalculoDiferencialLRT", ListaDatosFijos[i].BaseCalculoLRT);
                 nComando.Parameters.AddWithValue("@RemuneracionMaternidadANSeS", ListaDatosFijos[i].RenumeracionMatAnses);
                 nComando.ExecuteNonQuery();
+                instCon.cerrarConexion();
             }
-            instCon.cerrarConexion();
+            
 
         }
         public void InsertarDatosEmpresa( string RazonSocial, long Cuit,int DiaDePago)

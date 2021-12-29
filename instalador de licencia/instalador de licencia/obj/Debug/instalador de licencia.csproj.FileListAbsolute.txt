@@ -1,0 +1,17 @@
+C:\Users\JAVIER\Google Drive (programacioncanteros@gmail.com)\PROGRAMACION\Proyecto C#\libro iva 3.1\instalador de licencia\instalador de licencia\bin\Debug\instalador de licencia.exe.config
+C:\Users\JAVIER\Google Drive (programacioncanteros@gmail.com)\PROGRAMACION\Proyecto C#\libro iva 3.1\instalador de licencia\instalador de licencia\bin\Debug\instalador de licencia.exe
+C:\Users\JAVIER\Google Drive (programacioncanteros@gmail.com)\PROGRAMACION\Proyecto C#\libro iva 3.1\instalador de licencia\instalador de licencia\bin\Debug\instalador de licencia.pdb
+C:\Users\JAVIER\Google Drive (programacioncanteros@gmail.com)\PROGRAMACION\Proyecto C#\libro iva 3.1\instalador de licencia\instalador de licencia\obj\Debug\instalador_de_licencia.Form1.resources
+C:\Users\JAVIER\Google Drive (programacioncanteros@gmail.com)\PROGRAMACION\Proyecto C#\libro iva 3.1\instalador de licencia\instalador de licencia\obj\Debug\instalador_de_licencia.Properties.Resources.resources
+C:\Users\JAVIER\Google Drive (programacioncanteros@gmail.com)\PROGRAMACION\Proyecto C#\libro iva 3.1\instalador de licencia\instalador de licencia\obj\Debug\instalador de licencia.csproj.GenerateResource.Cache
+C:\Users\JAVIER\Google Drive (programacioncanteros@gmail.com)\PROGRAMACION\Proyecto C#\libro iva 3.1\instalador de licencia\instalador de licencia\obj\Debug\instalador de licencia.exe
+C:\Users\JAVIER\Google Drive (programacioncanteros@gmail.com)\PROGRAMACION\Proyecto C#\libro iva 3.1\instalador de licencia\instalador de licencia\obj\Debug\instalador de licencia.pdb
+d:\datos\Mis documentos\GitHub\LibroSueldoDigital\instalador de licencia\instalador de licencia\bin\Debug\instalador de licencia.exe.config
+d:\datos\Mis documentos\GitHub\LibroSueldoDigital\instalador de licencia\instalador de licencia\bin\Debug\instalador de licencia.exe
+d:\datos\Mis documentos\GitHub\LibroSueldoDigital\instalador de licencia\instalador de licencia\bin\Debug\instalador de licencia.pdb
+d:\datos\Mis documentos\GitHub\LibroSueldoDigital\instalador de licencia\instalador de licencia\obj\Debug\instalador_de_licencia.Form1.resources
+d:\datos\Mis documentos\GitHub\LibroSueldoDigital\instalador de licencia\instalador de licencia\obj\Debug\instalador_de_licencia.Properties.Resources.resources
+d:\datos\Mis documentos\GitHub\LibroSueldoDigital\instalador de licencia\instalador de licencia\obj\Debug\instalador de licencia.csproj.GenerateResource.cache
+d:\datos\Mis documentos\GitHub\LibroSueldoDigital\instalador de licencia\instalador de licencia\obj\Debug\instalador de licencia.csproj.CoreCompileInputs.cache
+d:\datos\Mis documentos\GitHub\LibroSueldoDigital\instalador de licencia\instalador de licencia\obj\Debug\instalador de licencia.exe
+d:\datos\Mis documentos\GitHub\LibroSueldoDigital\instalador de licencia\instalador de licencia\obj\Debug\instalador de licencia.pdb
