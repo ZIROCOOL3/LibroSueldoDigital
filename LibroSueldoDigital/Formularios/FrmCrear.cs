@@ -185,7 +185,7 @@ namespace LibroSueldoDigital.Formularios
         private void CmbSeleccionarArchivo_Click(object sender, EventArgs e)
         {
 
-            OfdAbrirArchivo.Filter = "Archivo de Excel (*.xlsx)|*.xlsx";
+            OfdAbrirArchivo.Filter = "Archivo de Excel (*.xlsm)|*.xlsm";
             DialogResult dr = OfdAbrirArchivo.ShowDialog();
             //OfdAbrirArchivo.FileName = "Seleciona un archivo de Excel";
             

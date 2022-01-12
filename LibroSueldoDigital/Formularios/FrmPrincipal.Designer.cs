@@ -82,6 +82,7 @@
             this.DtgDatos.ShowGroupPanel = false;
             this.DtgDatos.Size = new System.Drawing.Size(811, 230);
             this.DtgDatos.TabIndex = 1;
+            this.DtgDatos.ThemeName = "Office2019Light";
             this.DtgDatos.TitleText = "Datos FIjos";
             // 
             // radRibbonBar1
