@@ -52,6 +52,12 @@ namespace LibroSueldoDigital
             //FrmCrear formCrearLibro = new FrmCrear();
             //formCrearLibro.Conceptos = true;
             //formCrearLibro.Show();
+            mdConceptos frmAltaIndividual = new mdConceptos();
+
+            //frmAltaIndividual.oEmpresa = oEmpresa;
+            frmAltaIndividual.Editar = false;
+            frmAltaIndividual.ShowDialog();
+            MostrarGid("conceptos", 200, false);
         }
 
         private void CmbAltaDatosFijos_Click(object sender, EventArgs e)

@@ -93,7 +93,7 @@
             this.radRibbonBar1.Name = "radRibbonBar1";
             this.radRibbonBar1.Size = new System.Drawing.Size(811, 171);
             this.radRibbonBar1.TabIndex = 0;
-            this.radRibbonBar1.Text = "Libro Sueldo Digital 1.0";
+            this.radRibbonBar1.Text = "Libro Sueldo Digital 1.1";
             // 
             // ribbonTab1
             // 
@@ -303,7 +303,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Libro Sueldo Digital 1.0";
+            this.Text = "Libro Sueldo Digital 1.1";
             this.ThemeName = "Office2019Light";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.DtgDatos.MasterTemplate)).EndInit();

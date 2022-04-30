@@ -11,6 +11,7 @@ namespace LibroSueldoDigital.Clases
     class ClassConectar
     {
         SQLiteConnection con = new SQLiteConnection("Data Source=LibroSueldoDigital.db");
+        public static string cadena = "Data Source=LibroSueldoDigital.db";
         public SQLiteConnection abrirConexion()
         {
             try
