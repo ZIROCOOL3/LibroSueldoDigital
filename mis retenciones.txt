@@ -1,0 +1,11 @@
+216
+217
+767
+
+216 - SIRE -  IVA
+217 - SICORE-IMPTO.A LAS GANANCIAS
+767 - SICORE - RETENCIONES Y PERCEPC
+
+MesABuscarSinRayas
+Class="inputsubmit"
+class menu_submenu
