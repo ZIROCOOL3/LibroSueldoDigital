@@ -45,6 +45,7 @@ namespace LibroSueldoDigital.Formularios
         string CuilEmpleado = string.Empty;
         string IdentEnvio = string.Empty;
         string TipoLiquidacion = string.Empty;
+        string NumLiquidacion = string.Empty;
         string RenumeracionBruta = string.Empty;
         string CantDiasSacProporcional = string.Empty;
         string CantDiasAdelantoVacaciones = string.Empty;
@@ -351,7 +352,7 @@ namespace LibroSueldoDigital.Formularios
 
                         //03 dias base
                         string DiasBase = string.Empty;
-                        if (sl.GetCellValueAsString(i, 4) == "")
+                        if (sl.GetCellValueAsString(i, 4) == "" | CmbIdentificacionEnvio.Text == "RE")
                         {
                             DiasBase = "  ";
                         }
@@ -1044,10 +1045,13 @@ namespace LibroSueldoDigital.Formularios
                 if (IdentEnvio == "SJ")
                 {
                     DiasBase = "30";
+                    NumLiquidacion = Rellena("0", NumerodeLiquidacion.ToString(), 5, true);
                 }
                 else
                 {
                     DiasBase = "  ";
+                    TipoLiquidacion = " ";
+                    NumLiquidacion = "     ";
                 }
                 Reg01.Add(new ClassReg1
                 {
@@ -1056,7 +1060,7 @@ namespace LibroSueldoDigital.Formularios
                     IdentEnvio = IdentEnvio,
                     Periodo = TxtPeriodo.Text,
                     TipoLiquidacion = TipoLiquidacion,
-                    NumeroLiquidacion = Rellena("0", NumerodeLiquidacion.ToString(), 5, true),
+                    NumeroLiquidacion = NumLiquidacion,
                     DiasBase = DiasBase,
                     CantRegistros = Rellena("0", Columnas.ToString(), 6, true),
 

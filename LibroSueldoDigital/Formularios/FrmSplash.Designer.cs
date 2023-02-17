@@ -31,21 +31,21 @@
             this.components = new System.ComponentModel.Container();
             this.office2019LightTheme1 = new Telerik.WinControls.Themes.Office2019LightTheme();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.LblVersion = new Telerik.WinControls.UI.RadLabel();
             this.LblCopyright = new Telerik.WinControls.UI.RadLabel();
+            this.LblVersion = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LblVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LblCopyright)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LblVersion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,25 +66,32 @@
             this.radGroupBox1.TabIndex = 0;
             this.radGroupBox1.ThemeName = "Office2019Light";
             // 
-            // pictureBox1
+            // LblCopyright
             // 
-            this.pictureBox1.Image = global::LibroSueldoDigital.Properties.Resources.icon;
-            this.pictureBox1.Location = new System.Drawing.Point(5, 61);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(102, 104);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.LblCopyright.Location = new System.Drawing.Point(366, 198);
+            this.LblCopyright.Name = "LblCopyright";
+            this.LblCopyright.Size = new System.Drawing.Size(90, 19);
+            this.LblCopyright.TabIndex = 5;
+            this.LblCopyright.Text = "Copyright 2021";
+            this.LblCopyright.ThemeName = "Office2019Light";
             // 
-            // radLabel1
+            // LblVersion
             // 
-            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(386, 54);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(83, 24);
-            this.radLabel1.TabIndex = 2;
-            this.radLabel1.Text = "GIROSOFT";
-            this.radLabel1.ThemeName = "Office2019Light";
+            this.LblVersion.Location = new System.Drawing.Point(385, 173);
+            this.LblVersion.Name = "LblVersion";
+            this.LblVersion.Size = new System.Drawing.Size(67, 19);
+            this.LblVersion.TabIndex = 5;
+            this.LblVersion.Text = "Version 1.2";
+            this.LblVersion.ThemeName = "Office2019Light";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(373, 146);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(96, 19);
+            this.radLabel3.TabIndex = 4;
+            this.radLabel3.Text = "Windows 7/8/10";
+            this.radLabel3.ThemeName = "Office2019Light";
             // 
             // radLabel2
             // 
@@ -96,32 +103,25 @@
             this.radLabel2.Text = "Libro Sueldo Digital";
             this.radLabel2.ThemeName = "Office2019Light";
             // 
-            // radLabel3
+            // radLabel1
             // 
-            this.radLabel3.Location = new System.Drawing.Point(373, 146);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(96, 19);
-            this.radLabel3.TabIndex = 4;
-            this.radLabel3.Text = "Windows 7/8/10";
-            this.radLabel3.ThemeName = "Office2019Light";
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.Location = new System.Drawing.Point(386, 54);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(83, 24);
+            this.radLabel1.TabIndex = 2;
+            this.radLabel1.Text = "GIROSOFT";
+            this.radLabel1.ThemeName = "Office2019Light";
             // 
-            // LblVersion
+            // pictureBox1
             // 
-            this.LblVersion.Location = new System.Drawing.Point(385, 173);
-            this.LblVersion.Name = "LblVersion";
-            this.LblVersion.Size = new System.Drawing.Size(67, 19);
-            this.LblVersion.TabIndex = 5;
-            this.LblVersion.Text = "Version 1.0";
-            this.LblVersion.ThemeName = "Office2019Light";
-            // 
-            // LblCopyright
-            // 
-            this.LblCopyright.Location = new System.Drawing.Point(366, 198);
-            this.LblCopyright.Name = "LblCopyright";
-            this.LblCopyright.Size = new System.Drawing.Size(90, 19);
-            this.LblCopyright.TabIndex = 5;
-            this.LblCopyright.Text = "Copyright 2021";
-            this.LblCopyright.ThemeName = "Office2019Light";
+            this.pictureBox1.Image = global::LibroSueldoDigital.Properties.Resources.icon;
+            this.pictureBox1.Location = new System.Drawing.Point(5, 61);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(102, 104);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // timer1
             // 
@@ -129,9 +129,9 @@
             // 
             // FrmSplash
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(501, 276);
+            this.ClientSize = new System.Drawing.Size(502, 277);
             this.ControlBox = false;
             this.Controls.Add(this.radGroupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -148,12 +148,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             this.radGroupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LblVersion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LblCopyright)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LblVersion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

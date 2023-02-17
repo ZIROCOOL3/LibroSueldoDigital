@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -137,6 +138,18 @@ namespace LibroSueldoDigital
             FrmAcercaDe frmAcerca = new FrmAcercaDe();
             frmAcerca.ShowDialog();
         
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            this.Text = String.Format("Libro Sueldo Digital {0}", AssemblyVersion);
+        }
+        public string AssemblyVersion
+        {
+            get
+            {
+                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
         }
     }
 }

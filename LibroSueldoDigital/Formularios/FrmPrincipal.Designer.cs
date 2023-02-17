@@ -93,7 +93,7 @@
             this.radRibbonBar1.Name = "radRibbonBar1";
             this.radRibbonBar1.Size = new System.Drawing.Size(811, 171);
             this.radRibbonBar1.TabIndex = 0;
-            this.radRibbonBar1.Text = "Libro Sueldo Digital 1.1";
+            this.radRibbonBar1.Text = "Libro Sueldo Digital 1.2";
             // 
             // ribbonTab1
             // 
@@ -290,7 +290,7 @@
             // 
             // FrmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 401);
             this.Controls.Add(this.DtgDatos);
@@ -303,9 +303,10 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Libro Sueldo Digital 1.1";
+            this.Text = "Libro Sueldo Digital 1.2";
             this.ThemeName = "Office2019Light";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DtgDatos.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtgDatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).EndInit();
